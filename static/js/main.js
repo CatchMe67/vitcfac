@@ -449,17 +449,8 @@ async function initProfile() {
           : p.avatar}</div>
         <div>
           <div class="profile-name-row">
-            <div class="profile-name">${p.name}</div>
-            <button class="share-btn" type="button" onclick='shareProfessor(${JSON.stringify(p.name)}, ${JSON.stringify(p.id)})' aria-label="Share this professor">
-              <span class="share-btn-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
-                  <path d="M12 3.25a8.75 8.75 0 0 0-7.57 13.18L3.5 21l4.72-1.24A8.75 8.75 0 1 0 12 3.25Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-                  <path d="M9.5 8.8c.2-.5.4-.52.73-.52h.52c.17 0 .39-.06.61.47l.84 2.03c.07.16.11.34.02.5l-.58.9c-.08.13-.09.3 0 .46.28.52 1.1 1.76 2.35 2.49.19.11.42.11.58-.02l.96-.77c.2-.16.44-.2.63-.09l2.02.94c.26.12.31.31.25.52-.15.6-.54 1.38-1.24 1.56-.86.22-2.12.01-3.96-.92-1.84-.93-3.53-2.4-4.38-3.84-.83-1.39-1.05-2.84-.7-3.94.12-.39.36-.81.88-1.23Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <span class="share-btn-label">Share</span>
-            </button>
-          </div>
+              <div class="profile-name">${p.name}</div>
+            </div>
           <div class="profile-dept-tag">${p.dept}${p.courses.length ? `, ${p.courses.join(", ")}` : ""}</div>
         </div>
       </div>
@@ -594,19 +585,26 @@ function renderProfileDynamic(code, p, courseStats) {
 
   // ── Verdict row ───────────────────────────────────────────────────────
   const verdictEl = el("profile-verdict-row");
-  if (verdictEl) {
+    if (verdictEl) {
     const lPct = 100 - wPct;  // Calculate L percentage
     const displayPct = isW ? wPct : lPct;  // Show appropriate percentage
     verdictEl.innerHTML = `
       <div class="verdict-row">
-        <div class="verdict-pct ${hasRevs ? (isW ? "w" : "l") : "neutral"}"
-             style="transition:color 0.3s">${hasRevs ? `${displayPct}%` : "—%"}</div>
-        <div>
-          <div class="verdict-meta-label ${hasRevs ? (isW ? "w" : "l") : "neutral"}"
-               style="${hasRevs ? "" : "color:var(--muted);"}">
-            ${hasRevs ? (isW ? "W Rating" : "L Rating") : "No ratings"}
+        <div class="verdict-left">
+          <div class="verdict-pct ${hasRevs ? (isW ? "w" : "l") : "neutral"}"
+               style="transition:color 0.3s">${hasRevs ? `${displayPct}%` : "—%"}</div>
+          <div class="verdict-meta">
+            <div class="verdict-meta-label ${hasRevs ? (isW ? "w" : "l") : "neutral"}"
+                 style="${hasRevs ? "" : "color:var(--muted);"}">
+              ${hasRevs ? (isW ? "W Rating" : "L Rating") : "No ratings"}
+            </div>
+            <div class="verdict-meta-count">${reviews} review${reviews !== 1 ? "s" : ""}${code !== "global" ? ` for ${code}` : ""}</div>
           </div>
-          <div class="verdict-meta-count">${reviews} review${reviews !== 1 ? "s" : ""}${code !== "global" ? ` for ${code}` : ""}</div>
+        </div>
+        <div class="verdict-actions">
+          <button class="share-btn profile-share-inline" type="button" onclick='shareProfessor(${JSON.stringify(p.name)}, ${JSON.stringify(p.id)})' aria-label="Share this professor">
+            <span class="share-btn-label">Share</span>
+          </button>
         </div>
       </div>`;
   }

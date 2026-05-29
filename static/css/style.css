@@ -234,21 +234,23 @@ body {
 }
 .rankings-btn-new:hover { opacity: 0.8; }
 
-/* ─── SEARCH ─────────────────────────────────── */
+/* ─── SEARCH / PROMO BANNER ─────────────────────────────────── */
 .promo-banner {
-  margin: 0 var(--page-pad) 14px;
-  padding: 16px 16px;
+  position: relative; /* allow absolute close button */
+  box-sizing: border-box;
+  max-width: var(--max-w);
+  width: calc(100% - 40px); /* keep equal spacing on both sides */
+  margin: 12px auto;
+  padding: 18px 18px;
   border-radius: 14px;
   background: transparent;
   color: var(--text);
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 12px;
   border: 1px solid var(--border3);
-  box-sizing: border-box;
-  width: 100%;
 }
 .promo-banner-copy {
   display: block;
@@ -257,7 +259,8 @@ body {
   line-height: 1.25;
   font-size: 15px;
   color: var(--muted);
-  padding-right: 44px;
+  text-align: center;
+  padding-right: 0;
 }
 .promo-banner-copy strong {
   color: var(--text);
@@ -266,19 +269,15 @@ body {
   display: block;
   font-size: 18px;
 }
-.promo-banner-copy span {
-  color: var(--muted);
-  display: block;
-  font-size: 14px;
-}
+.promo-banner-copy span { color: var(--muted); display:block; font-size:14px; }
 .promo-banner-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 28px;
-  height: 28px;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 8px;
   background: transparent;
   color: var(--muted);
   display: grid;
@@ -286,16 +285,13 @@ body {
   line-height: 1;
   cursor: pointer;
 }
-.promo-banner-close:hover {
-  color: var(--text);
-}
-
+.promo-banner-close:hover { color: var(--text); background: rgba(255,255,255,0.02); }
 .promo-share-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 40px;
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: 10px;
   border: 1px solid var(--border3);
   background: rgba(255,255,255,0.02);
@@ -306,10 +302,14 @@ body {
   letter-spacing: 0.02em;
   line-height: 1;
   cursor: pointer;
+  margin: 0 auto; /* center */
 }
-.promo-share-btn:hover {
-  background: rgba(255,255,255,0.04);
-  border-color: var(--border2);
+.promo-share-btn:hover { background: rgba(255,255,255,0.04); border-color: var(--border2); }
+
+/* small screens: ensure banner never touches edges */
+@media (max-width: 420px) {
+  .promo-banner { width: calc(100% - 28px); padding: 14px; border-radius: 12px; }
+  .promo-banner-close { top: 10px; right: 10px; }
 }
 
 .search-section { padding: 8px var(--page-pad) 0; }
@@ -659,6 +659,55 @@ body.dark .promo-share-btn:hover {
   letter-spacing: 0.05em;
   margin-bottom: 8px;
 }
+
+/* Verdict row: align pct + meta with actions (share) to the right */
+.verdict-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+.verdict-left { display:flex; align-items:center; gap:12px; }
+.verdict-meta { display:flex; flex-direction:column; }
+.verdict-pct {
+  font-family: var(--font-head);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 72px;
+  text-align: left;
+}
+.verdict-pct.w { color: #22C55E; }
+.verdict-pct.l { color: #EF4444; }
+.verdict-meta-label { font-size:13px; color:var(--muted); }
+.verdict-meta-count { font-size:12px; color:var(--faint); }
+
+/* Inline share button placed next to verdict on profile */
+.profile-share-inline {
+  border-radius: 8px;
+  padding: 8px 12px;
+  min-height: 36px;
+  background: #FFFFFF;
+  color: #000000;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.profile-share-inline:hover { transform: translateY(-1px); }
+
+/* Light-theme variant: green primary for profile share */
+html[data-theme="light"] .profile-share-inline {
+  background: #16A34A; /* green */
+  color: #FFFFFF;
+  box-shadow: 0 8px 22px rgba(22,163,74,0.12);
+}
+html[data-theme="light"] .profile-share-inline:hover { background: #15803D; }
 
 .course-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .course-tag {
