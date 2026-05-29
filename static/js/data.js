@@ -1,8 +1,3 @@
-/* ─── data.js ─────────────────────────────────────────────────────────────
-   Replace API stub calls with real fetch() to your Flask endpoints.
-   All mock data lives here during development.
-────────────────────────────────────────────────────────────────────────── */
-
 const DEPARTMENTS = ["ALL", "CSE", "ECE", "MECH", "SSL", "SBST", "OTHER"];
 
 const METRIC_DEFS = [
@@ -18,6 +13,7 @@ const LORE_GREEN = [
   "Chill with DA deadlines",
   "Basically free DA marks",
   "Lets you redo assignments",
+  "Chill / Can Slack Off"
 ];
 const LORE_RED = [
   "Gatekeeps internal marks",
@@ -25,6 +21,8 @@ const LORE_RED = [
   "Surprise quizzes",
   "Goes off syllabus",
   "Mass fails assignments",
+  "Biased Grader",
+  "High Class Average"
 ];
 
 /* ─── ANTI-SPAM: Browser Fingerprint ─────────────────────────────────────
@@ -50,20 +48,29 @@ function getFingerprint() {
   return (h >>> 0).toString(36);
 }
 
-function hasReviewed(profId) {
+function hasReviewed(profId, course = null) {
   try {
-    const fp   = getFingerprint();
+    const fp = getFingerprint();
     const data = JSON.parse(localStorage.getItem("plore_v") || "{}");
-    return !!(data[fp] && data[fp].includes(String(profId)));
-  } catch { return false; }
+    const entries = data[fp] || [];
+    if (course) {
+      const key = `${profId}::${course}`;
+      return entries.includes(key);
+    }
+    // If no course provided, return true if any review exists for this prof
+    return entries.some(e => e.startsWith(`${profId}::`));
+  } catch {
+    return false;
+  }
 }
 
-function markReviewed(profId) {
+function markReviewed(profId, course = "") {
   try {
-    const fp   = getFingerprint();
+    const fp = getFingerprint();
     const data = JSON.parse(localStorage.getItem("plore_v") || "{}");
     if (!data[fp]) data[fp] = [];
-    if (!data[fp].includes(String(profId))) data[fp].push(String(profId));
+    const key = course ? `${profId}::${course}` : `${profId}::`;
+    if (!data[fp].includes(key)) data[fp].push(key);
     localStorage.setItem("plore_v", JSON.stringify(data));
   } catch {}
 }
