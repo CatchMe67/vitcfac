@@ -50,17 +50,45 @@ function injectFooter() {
   const footer = document.createElement("footer");
   footer.className = "footer";
   footer.innerHTML = `
-    <div class="footer-text">
-      We are an independent student platform. Not affiliated with VIT. Reviews reflect personal student opinions only.
+    <div class="footer-left">
+      <div class="footer-text">
+        We are an independent student platform. Not affiliated with VIT. Reviews reflect personal student opinions only.
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="terms.html">Terms of Use</a> &middot;
-      <a href="privacy.html">Privacy Policy</a> &middot;
-      <a href="about.html">About</a> &middot;
-      <a href="mailto:vit.fac@proton.me">Contact</a>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a class="footer-link" href="terms.html">Terms of Use</a>
+        <a class="footer-link" href="privacy.html">Privacy Policy</a>
+        <a class="footer-link" href="about.html">About</a>
+        <a id="footer-contact" class="footer-contact-btn" href="mailto:vit.fac@proton.me">Contact</a>
+      </div>
     </div>
   `;
   pageContainer.appendChild(footer);
+
+  // Brief preview: show only footer on first visit for ~900ms to surface contact
+  try {
+    const previewKey = 'seen_footer_preview_v2';
+    const firstVisit = !localStorage.getItem(previewKey);
+    if (firstVisit) {
+      pageContainer.classList.add('hide-content');
+      setTimeout(() => {
+        pageContainer.classList.remove('hide-content');
+        localStorage.setItem(previewKey, '1');
+        const contact = document.getElementById('footer-contact');
+        if (contact) {
+          contact.classList.add('pulse-once');
+          setTimeout(() => contact.classList.remove('pulse-once'), 2200);
+        }
+      }, 900);
+    } else {
+      // gentle persistent highlight for returning visitors
+      setTimeout(() => {
+        const contact = document.getElementById('footer-contact');
+        if (contact) contact.classList.add('pulse');
+      }, 400);
+    }
+  } catch (e) { /* ignore storage errors */ }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
