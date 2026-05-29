@@ -188,7 +188,7 @@ function renderProfCard(p) {
       </div>
       <div class="prof-right">
         ${hasReviews ? `<span class="w-badge ${isW ? "w" : "l"}">${isW ? "W Prof" : "L Prof"}</span>` : `<span class="w-badge" style="border-color: var(--border2); color: var(--muted);">No ratings</span>`}
-        <span class="prof-pct">${hasReviews ? `${p.wPct}%` : "—%"}</span>
+        <span class="prof-pct" title="Percent of positive (W) ratings">${hasReviews ? `W ${p.wPct}%` : "—%"}</span>
         <span class="prof-count">${p.reviews} ratings</span>
       </div>
     </a>`;
@@ -206,7 +206,7 @@ function renderHomeMobileProfItem(p, rank) {
         <div class="lb-name">${p.name}</div>
         <div class="lb-dept">${p.dept}${p.courses && p.courses.length > 0 ? ` &middot; ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
       </div>
-      <div class="lb-score ${hasReviews ? (isW ? "w" : "l") : "l"}">${hasReviews ? `${p.wPct}%` : "—%"}</div>
+      <div class="lb-score ${hasReviews ? (isW ? "w" : "l") : "l"}" title="Percent of positive (W) ratings">${hasReviews ? `W ${p.wPct}%` : "—%"}</div>
     </a>`;
 }
 
