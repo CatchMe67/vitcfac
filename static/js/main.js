@@ -5,8 +5,16 @@
 // Apply saved theme immediately to prevent flashing before DOM loads
 (() => {
   const savedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-  document.documentElement.setAttribute("data-theme", savedTheme);
+  applyTheme(savedTheme);
 })();
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  if (document.body) {
+    document.body.classList.toggle("dark", theme === "dark");
+    document.body.classList.toggle("light", theme === "light");
+  }
+}
 
 const PAGE = (() => {
   const f = window.location.pathname.split("/").pop().replace(".html", "");
@@ -20,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (toggleBtn) {
         const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
         const newTheme = currentTheme === "light" ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", newTheme);
+        applyTheme(newTheme);
         localStorage.setItem("theme", newTheme);
       
         // Update theme color meta tag dynamically
@@ -139,11 +147,16 @@ function renderPromoBanner() {
   slot.style.display = "block";
   slot.innerHTML = `
     <div class="promo-banner" role="region" aria-label="Promotional banner">
-      <div class="promo-banner-text">
-        <strong>Don’t let your friends get cooked this sem 💀</strong>
-        <span>Drop the link in your class groups so we can get more stats.</span>
+      <div class="promo-banner-icon" aria-hidden="true">💀</div>
+      <div class="promo-banner-copy">
+        <strong>Don't let your friends get cooked this sem.</strong>
+        <span>Drop the link in your class groups.</span>
       </div>
-      <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner()">✖</button>
+      <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner()">
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>`;
 }
 
