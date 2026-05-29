@@ -173,6 +173,31 @@ def format_prof(row):
         "avatar": avatar.upper()
     }
 
+
+def make_placeholder_avatar(name: str = "?"):
+    """Return a tiny inline SVG avatar so broken image fetches never surface as 404s.
+
+    This keeps the browser console clean even when the upstream image URL is
+    missing, blocked, or temporarily unavailable.
+    """
+    name = (name or "?").strip()
+    parts = [p for p in name.split() if p]
+    initials = ""
+    if len(parts) >= 2:
+        initials = (parts[0][0] + parts[-1][0]).upper()
+    elif parts:
+        initials = parts[0][:2].upper()
+    else:
+        initials = "?"
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Professor avatar placeholder">
+      <rect width="256" height="256" rx="128" fill="#F5F5F3"/>
+      <rect x="8" y="8" width="240" height="240" rx="120" fill="#E9E7E1"/>
+      <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
+            font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="700" fill="#233042">{initials}</text>
+    </svg>'''
+    return Response(svg, mimetype="image/svg+xml", headers={"Cache-Control": "no-store"})
+
 # ══════════════════════════════════════════════════════════════════════════
 #  ROUTES
 # ══════════════════════════════════════════════════════════════════════════
@@ -304,16 +329,22 @@ def get_prof(prof_id):
 def get_prof_image(prof_id):
     """Proxy the professor image to hide the bare employee ID in the URL."""
     real_id = decode_id(prof_id)
-    res = supabase.table("faculty").select("image_url").eq("employee_id", str(real_id)).execute()
-    if not res.data or not res.data[0].get("image_url"):
-        return err("Image not found", 404)
+    res = supabase.table("faculty").select("name, image_url").eq("employee_id", str(real_id)).execute()
+    if not res.data:
+        return make_placeholder_avatar("?")
+
+    row = res.data[0] or {}
+    image_url = row.get("image_url")
+    name = row.get("name") or "?"
+    if not image_url:
+        return make_placeholder_avatar(name)
     
-    url = res.data[0]["image_url"].replace(" ", "%20")
+    url = image_url.replace(" ", "%20")
     try:
-        req = urllib.request.urlopen(url)
+        req = urllib.request.urlopen(url, timeout=8)
         return Response(req.read(), mimetype=req.info().get_content_type())
     except Exception:
-        return err("Image fetch failed", 404)
+        return make_placeholder_avatar(name)
 
 
 @app.route("/api/profs/<prof_id>/stats-by-course")
@@ -454,7 +485,7 @@ def submit_review(prof_id):
             dup_q = supabase.table("reviews").select("id").eq("faculty_id", internal_id).eq("browser_fp", fp).is_("course_code", None).execute()
 
         if dup_q.data and len(dup_q.data) > 0:
-            return err("You have already submitted a review for this course and professor.", 409)
+            return err("You have already submitted for this professor and subject.", 409)
 
         supabase.table("reviews").insert({
             "faculty_id":    internal_id,
@@ -549,10 +580,14 @@ def update_faculty_stats(faculty_id):
 @app.route("/api/leaderboard")
 def get_leaderboard():
     """Get leaderboard sorted by W%."""
-    res = supabase.table("faculty").select("*, faculty_stats(*)").execute()
-    profs = [format_prof(r) for r in res.data]
-    profs.sort(key=lambda x: (-x["wPct"], -x["reviews"]))
-    return jsonify(profs)
+    try:
+        res = supabase.table("faculty").select("*, faculty_stats(*)").execute()
+        profs = [format_prof(r) for r in (res.data or [])]
+        profs.sort(key=lambda x: (-x.get("wPct", 0), -x.get("reviews", 0)))
+        return jsonify(profs)
+    except Exception as e:
+        print(f"Error in /api/leaderboard: {e}")
+        return jsonify([])
 
 
 @app.route("/api/admin/stats")

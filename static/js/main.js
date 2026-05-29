@@ -896,7 +896,11 @@ async function submitReview() {
       showToast("Rating submitted. Lore recorded.");
       setTimeout(() => go("profile.html", { id: _rv.profId }), 1200);
     } else {
-      throw new Error("Submit failed");
+      const msg = result.error || "Something went wrong. Try again.";
+      showToast(msg, "error");
+      btn.classList.remove("loading");
+      btn.textContent = "Submit Rating";
+      return;
     }
   } catch (e) {
     showToast("Something went wrong. Try again.", "error");

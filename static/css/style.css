@@ -2015,9 +2015,24 @@ body, .page, .prof-list { max-width: 100%; }
 :root[data-theme="light"] .lore-pick.selected,
 :root[data-theme="light"] .verdict-btn.sel-w,
 :root[data-theme="light"] .verdict-btn.sel-l {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: #1F2937;
+  color: #FFFFFF;
+  border-color: #1F2937;
+}
+:root[data-theme="light"] .verdict-btn.sel-w .verdict-label,
+:root[data-theme="light"] .verdict-btn.sel-l .verdict-label {
+  color: #FFFFFF;
+}
+:root[data-theme="light"] .verdict-btn {
+  background: #FFFFFF;
+  color: #1F2937;
+}
+:root[data-theme="light"] .verdict-btn:hover {
+  background: #F3F4F6;
+  color: #1F2937;
+}
+:root[data-theme="light"] .verdict-btn:hover .verdict-label {
+  color: #1F2937;
 }
 
 :root[data-theme="light"] .form-label {
