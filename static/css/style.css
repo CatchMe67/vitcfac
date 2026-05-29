@@ -484,18 +484,6 @@ body, .page, .prof-list { max-width: 100%; }
   margin-bottom: 8px;
 }
 
-.subject-toggle-bar .subject-tabs-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 6px;
-}
-.subject-toggle-bar .subject-tabs-scroll::-webkit-scrollbar { height: 6px; }
-.subject-toggle-bar .subject-tabs-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 6px; }
-.subject-tab { flex: 0 0 auto; white-space: nowrap; }
-.subject-tab .stab-count { margin-left: 6px; }
-
 .course-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .course-tag {
   font-family: var(--font-mono);
@@ -1631,7 +1619,7 @@ body, .page, .prof-list { max-width: 100%; }
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   line-height: 1;
-  overflow: hidden;
+  overflow: visible;
 }
 .subject-tab:hover {
   border-color: #444444;
