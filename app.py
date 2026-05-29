@@ -160,6 +160,8 @@ def format_prof(row):
         "courses": courses_list,
         "wPct": stats.get("w_pct") or 0,
         "reviews": stats.get("total_reviews") or 0,
+        "wCount": stats.get("w_count") or 0,
+        "lCount": stats.get("l_count") or 0,
         "metrics": {
             "lecture": float(stats.get("avg_lecture") or 0),
             "da": float(stats.get("avg_da") or 0),
