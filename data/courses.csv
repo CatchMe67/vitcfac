@@ -1,0 +1,696 @@
+course_id,course_name,type,credits
+BCHY101L,Engineering Chemistry,theory,3.0
+BCHY101P,Engineering Chemistry Lab,lab,1.0
+BMAT101L,Calculus,theory,3.0
+BMAT101P,Calculus Lab,lab,1.0
+BMAT102L,Differential Equations and Transforms,theory,4.0
+BMAT201L,Complex Variables and Linear Algebra,theory,4.0
+BMAT202L,Probability and Statistics,theory,3.0
+BMAT202P,Probability and Statistics Lab,lab,1.0
+BPHY101L,Engineering Physics,theory,3.0
+BPHY101P,Engineering Physics Lab,lab,1.0
+BCSE101E,Computer Programming: Python,embedded,3.0
+BCSE102L,Structured and Object-Oriented Programming,theory,2.0
+BCSE102P,Structured and Object-Oriented Programming Lab,lab,2.0
+BCSE103E,Computer Programming: Java,embedded,3.0
+BEEE102L,Basic Electrical and Electronics Engineering,theory,3.0
+BEEE102P,Basic Electrical and Electronics Engineering Lab,lab,1.0
+BENG101L,Technical English Communication,theory,2.0
+BENG101P,Technical English Communication Lab,lab,1.0
+BENG102P,Technical Report Writing,lab,1.0
+BFLE200L,Foreign Language Basket,theory,2.0
+BHSM200L,HSM Elective Basket,theory,3.0
+BHUM113L,Welfare Economics,theory,3.0
+BSTS101P,Quantitative Skills Practice I,lab,1.5
+BSTS102P,Quantitative Skills Practice II,lab,1.5
+BSTS201P,Qualitative Skills Practice I,lab,1.5
+BSTS202P,Qualitative Skills Practice II,lab,1.5
+BECE102L,Digital Systems Design,theory,3.0
+BECE102P,Digital Systems Design Lab,lab,1.0
+BECE204L,Microprocessors and Microcontrollers,theory,3.0
+BECE204P,Microprocessors and Microcontrollers Lab,lab,1.0
+BMAT205L,Discrete Mathematics and Graph Theory,theory,4.0
+BCSE202L,Data Structures and Algorithms,theory,3.0
+BCSE202P,Data Structures and Algorithms Lab,lab,1.0
+BCSE203E,Web Programming,embedded,3.0
+BCSE204L,Design and Analysis of Algorithms,theory,3.0
+BCSE204P,Design and Analysis of Algorithms Lab,lab,1.0
+BCSE205L,Computer Architecture and Organization,theory,3.0
+BCSE301L,Software Engineering,theory,3.0
+BCSE301P,Software Engineering Lab,lab,1.0
+BCSE302L,Database Systems,theory,3.0
+BCSE302P,Database Systems Lab,lab,1.0
+BCSE303L,Operating Systems,theory,3.0
+BCSE303P,Operating Systems Lab,lab,1.0
+BCSE304L,Theory of Computation,theory,3.0
+BCSE305L,Embedded Systems,theory,3.0
+BCSE306L,Artificial Intelligence,theory,3.0
+BCSE307L,Compiler Design,theory,3.0
+BCSE307P,Compiler Design Lab,lab,1.0
+BCSE308L,Computer Networks,theory,3.0
+BCSE308P,Computer Networks Lab,lab,1.0
+BCSE309L,Cryptography and Network Security,theory,3.0
+BCSE309P,Cryptography and Network Security Lab,lab,1.0
+BCSE399J,Summer Industrial,project,1.0
+BCSE497J,Project - I,project,3.0
+BCSE498J,Project - II /,project,5.0
+BCSE499J,One Semester,project,14.0
+BBIT415L,"Food, Nutrition and Health",theory,3.0
+BCSE355L,Cloud Architecture Design,theory,3.0
+BECE201L,Electronic Materials and devices,theory,3.0
+BECE203L,Circuit Theory,theory,4.0
+BECE351E,Internet of Things,embedded,2.0
+BECE352E,IoT Domain Analyst,embedded,2.0
+BFST213E,Garment Designing and Manufacturing,embedded,3.0
+BHUM110L,Cognitive Psychology,theory,3.0
+BHUM111L,Happiness and Well-being,theory,3.0
+BHUM112L,Social Psychology,theory,3.0
+BHUM114L,International Economic Relations,theory,3.0
+BHUM201L,Mass Communication,theory,3.0
+BHUM202L,Rural Development,theory,3.0
+BHUM203L,Introduction to Psychology,theory,3.0
+BHUM204L,Industrial Psychology,theory,3.0
+BHUM205L,Development Economics,theory,3.0
+BHUM206L,International Economics,theory,3.0
+BHUM207L,Engineering Economics,theory,3.0
+BHUM208L,Economics of Strategy,theory,3.0
+BHUM209L,Game Theory,theory,3.0
+BHUM210E,Econometrics,embedded,3.0
+BHUM211L,Behavioral Economics,theory,3.0
+BHUM212L,Mathematics for Economic Analysis,theory,3.0
+BHUM213L,Corporate Social Responsibility,theory,3.0
+BHUM214L,Political Science,theory,3.0
+BHUM215L,International Relations,theory,3.0
+BHUM216L,Indian Culture and Heritage,theory,3.0
+BHUM217L,Contemporary India,theory,3.0
+BHUM218L,Financial Management,theory,3.0
+BHUM219L,Principles of Accounting,theory,3.0
+BHUM220L,Financial Markets and Institutions,theory,3.0
+BHUM221L,"Economics of Money, Banking and Financial Markets",theory,3.0
+BHUM222L,Security Analysis and Portfolio Management,theory,3.0
+BHUM223L,"Options, Futures and other Derivatives",theory,3.0
+BHUM224L,Fixed Income Securities,theory,3.0
+BHUM225L,Personal Finance,theory,3.0
+BHUM226L,Corporate Finance,theory,3.0
+BHUM227L,Financial Statement Analysis,theory,3.0
+BHUM228L,Cost and Management Accounting,theory,3.0
+BHUM229L,"Mind, Embodiment, and Technology",theory,3.0
+BHUM230L,Health Humanities in Biotechnological Era,theory,3.0
+BHUM231L,Reproductive choices for a Sustainable Society,theory,3.0
+BHUM232L,Introduction to Sustainable Aging,theory,3.0
+BHUM233L,Environmental Psychology,theory,3.0
+BHUM234L,Indian Psychology,theory,3.0
+BHUM235E,Psychology of Wellness,embedded,3.0
+BHUM236L,Taxation,theory,3.0
+BMEE102P,Engineering Design Visualisation Lab,lab,2.0
+BMEE201L,Engineering Mechanics,theory,3.0
+BMEE355E,Cloud Computing,embedded,3.0
+BSTS301P,Advanced Competitive Coding - I,lab,1.5
+BSTS302P,Advanced Competitive Coding - II,lab,1.5
+CFOC101M,Advanced Green Manufacturing Systems,theory,3.0
+CFOC102M,Introduction to Cognitive Psychology,theory,3.0
+CFOC103M,Introduction to Political Theory,theory,3.0
+CFOC104M,Six Sigma,theory,3.0
+CFOC105M,Emotional Intelligence,theory,2.0
+CFOC106M,Manufacturing Strategy,theory,2.0
+CFOC107M,Supply Chain Analytics,theory,2.0
+CFOC108M,Systems Engineering: Theory and Practice,theory,2.0
+CFOC109M,Design Thinking - A Primer,theory,1.0
+CFOC110M,MCDM Techniques Using R and MARLAB,theory,1.0
+CFOC111M,Perspectives on Neurolinguistic,theory,1.0
+CFOC112M,Sociology of Science,theory,1.0
+CFOC113M,Contemporary Themes in Indiaâ€™s Economic Development and Economic Survey,theory,3.0
+CFOC114M,Problem Solving through Programming in C,theory,3.0
+CFOC115M,Design and Analysis of Algorithms,theory,2.0
+CFOC116M,Computer Vision,theory,3.0
+CFOC117M,Spatial Informatics,theory,2.0
+CFOC118M,Practical Machine Learning with Tensorflow,theory,2.0
+CFOC119M,Training of Trainers,theory,3.0
+CFOC120M,Knowledge Management,theory,2.0
+CFOC121M,Leadership,theory,1.0
+CFOC122M,Educational Leadership,theory,3.0
+CFOC123M,Cost Accounting,theory,1.0
+CFOC124M,"Practitioners Course In Descriptive, Predictive and Prescriptive Analytics",theory,2.0
+CFOC125M,Decision-Making Under Uncertainty,theory,1.0
+CFOC126M,Data Analysis and Decision Making - III,theory,3.0
+CFOC127M,Business Analytics and Data Mining Modeling Using R Part II,theory,1.0
+CFOC128M,Business Analytics and Text Mining Modeling Using Python,theory,2.0
+CFOC129M,Economics of Health and Health Care,theory,2.0
+CFOC130M,Human Resource Development,theory,3.0
+CFOC131M,Performance and Reward Management,theory,3.0
+CFOC132M,Corporate Social Responsibility,theory,2.0
+CFOC133M,E-Business,theory,3.0
+CFOC134M,"Innovation, Business Models and Entrepreneurship",theory,2.0
+CFOC135M,The Ethical Corporation,theory,2.0
+CFOC136M,Toyota Production System,theory,2.0
+CFOC137M,Intellectual Property Rights and Competition Law,theory,2.0
+CFOC138M,Patent Search for Engineers and Lawyers,theory,2.0
+CFOC139M,Role of Craft and Technology in Interior - Architecture,theory,2.0
+CFOC140M,Glass In Buildings : Design And Applications,theory,3.0
+CFOC141M,Visual Perception and Art: A Survey Across the Cultures,theory,1.0
+CFOC142M,Mapping Signal Processing Algorithms to Architectures,theory,3.0
+CFOC143M,Introduction to Computer Vision,theory,3.0
+CFOC144M,"Op-Amp Practical Applications: Design, Simulation and Implementation",theory,3.0
+CFOC145M,Fabrication Techniques for MEMs - based sensors: clinical Perspective,theory,3.0
+CFOC146M,Linear System Theory,theory,3.0
+CFOC147M,Advanced Linear Continuous Control Systems: Applications with MATLAB Programming and Simulink,theory,2.0
+CFOC148M,Introduction to Wireless and Cellular Communications,theory,3.0
+CFOC149M,Digital Switching - I,theory,2.0
+CFOC150M,Microelectronics: Devices To Circuits,theory,3.0
+CFOC151M,Digital Image Processing,theory,3.0
+CFOC152M,Pattern Recognition and Application,theory,3.0
+CFOC153M,Microwave Theory and Techniques,theory,3.0
+CFOC154M,Principles and Techniques of Modern Radar Systems,theory,3.0
+CFOC155M,Computational Electromagnetics,theory,3.0
+CFOC156M,Microwave Engineering,theory,3.0
+CFOC157M,Introduction to parallel Programming in Open MP,theory,1.0
+CFOC158M,Reinforcement Learning,theory,3.0
+CFOC159M,Applied Natural Language Processing,theory,3.0
+CFOC160M,Python for Data Science,theory,1.0
+CFOC161M,Data Science for Engineers,theory,2.0
+CFOC162M,Scalable Data Science,theory,2.0
+CFOC163M,Advanced Computer Architecture,theory,2.0
+CFOC164M,Software,theory,3.0
+CFOC165M,Software testing,theory,3.0
+CFOC166M,Hardware Modeling using Verilog,theory,2.0
+CFOC167M,Synthesis of Digital Systems,theory,3.0
+CFOC168M,Switching Circuits and Logic Design,theory,3.0
+CFOC169M,Demystifying networking,theory,1.0
+CFOC170M,Modern Algebra,theory,2.0
+CFOC171M,Introduction to Haskell Programming 2,theory,2.0
+CFOC172M,Flow through Porous Media,theory,3.0
+CFOC173M,Bioenergy,theory,2.0
+CFOC174M,Introduction to Biostatistics,theory,2.0
+CFOC175M,Nanotechnology in Agriculture,theory,2.0
+CFOC176M,Computer Aided Drug Design,theory,2.0
+CFOC177M,Drug Delivery: Principles and Engineering,theory,3.0
+CFOC178M,Functional Genomics,theory,1.0
+CFOC179M,Introduction to Proteogenomics,theory,3.0
+CFOC180M,Introduction to Mechanobiology,theory,2.0
+CFOC181M,WildLife Conservation,theory,2.0
+CFOC182M,Organic Chemistry in Biology and Drug Development,theory,3.0
+CFOC183M,Bioinorganic Chemistry,theory,1.0
+CFOC184M,Spectroscopic Techniques for Pharmaceutical and Biopharmaceutical Industries,theory,3.0
+CFOC185M,Biophysical chemistry,theory,3.0
+CFOC186M,Deep Learning,theory,3.0
+CFOC187M,Blockchain Architecture Design and use Cases,theory,3.0
+CFOC188M,Ethical Hacking,theory,3.0
+CFOC189M,Organic Farming for Sustainable Agricultural Production,theory,2.0
+CFOC190M,Positive Psychology,theory,2.0
+CFOC191M,Forests and their Management,theory,3.0
+CFOC192M,Forest Biometry,theory,2.0
+CFOC193M,Bioengineering: An Interface with Biology and Medicine,theory,2.0
+CFOC194M,Human Molecular Genetics,theory,1.0
+CFOC195M,Bioenergetics of Life Processes,theory,1.0
+CFOC196M,Computational Systems Biology,theory,3.0
+CFOC197M,Bio-Informatics: Algorithms and Applications,theory,3.0
+CFOC198M,Biostatistics and Design of Experiments,theory,2.0
+CFOC199M,Medical Biomaterials,theory,2.0
+CFOC200M,Demystifying the Brain,theory,1.0
+CFOC201M,Principles and Applications of NMR Spectroscopy,theory,2.0
+CFOC202M,Cell Culture Technologies,theory,2.0
+CFOC203M,Natural Hazards,theory,2.0
+CFOC204M,Modern Construction Materials,theory,3.0
+CFOC205M,"Energy Efficiency, Acoustics and Daylighting in Building",theory,3.0
+CFOC206M,"Fire Protection, Services and Maintenance Management of Building",theory,3.0
+CFOC207M,Electronic Waste Management - Issues And Challenges,theory,1.0
+CFOC208M,Higher Surveying,theory,3.0
+CFOC209M,Environmental Remediation of Contaminated Sites,theory,3.0
+CFOC210M,Soil Structure Interaction,theory,3.0
+CFOC211M,Introduction to Accounting and Finance for Civil Engineers,theory,2.0
+CFOC212M,Scheduling Techniques in,theory,1.0
+CFOC213M,GPS Surveying,theory,1.0
+CFOC214M,Sustainable Materials and Green Buildings,theory,3.0
+CFOC215M,Geomorphic Processes: Landforms and Landscapes,theory,2.0
+CFOC216M,Introduction To Process Modeling in the Membrane Separation Process,theory,1.0
+CFOC217M,Computational Geometry,theory,3.0
+CFOC218M,Compiler Design,theory,3.0
+CFOC219M,Embedded System Design with ARM,theory,2.0
+CFOC220M,VLSI Physical Design,theory,3.0
+CFOC221M,Cloud computing,theory,2.0
+CFOC222M,Artificial Intelligence : Knowledge Representation And Reasoning,theory,3.0
+CFOC223M,Privacy and Security in Online Social Media,theory,2.0
+CFOC224M,Information Security - 5 - Secure Systems Engineering,theory,2.0
+CFOC225M,Model Checking,theory,3.0
+CFOC226M,Randomized Algorithms,theory,3.0
+CFOC227M,GPU Architectures and Programming,theory,3.0
+CFOC228M,Multi-Core Computer Architecture - Storage and Interconnects,theory,2.0
+CFOC229M,Data Analytics with Python,theory,3.0
+CFOC230M,Arithmetic Circuit Complexity,theory,3.0
+CFOC231M,Google Cloud Computing Foundation Course,theory,2.0
+CFOC232M,Consumer Behaviour,theory,2.0
+CFOC233M,Enhancing,theory,2.0
+CFOC234M,Introduction to Airplane Performance,theory,2.0
+CFOC235M,Rocket Propulsion,theory,3.0
+CFOC236M,Aircraft Maintenance,theory,1.0
+CFOC237M,Sustainable Architecture,theory,3.0
+CFOC238M,Introduction to History of Architecture in India,theory,1.0
+CFOC239M,"Structure, Form, and Architecture : The Synergy",theory,2.0
+CFOC240M,Interactomics : Basics and Applications,theory,3.0
+CFOC241M,Introduction to Professional Scientific Communication,theory,1.0
+CFOC242M,Material and Energy Balances,theory,3.0
+CFOC243M,Thermodynamics for Biological Systems: Classical and Statistical Aspect,theory,3.0
+CFOC244M,Optical Spectroscopy and Microscopy : Fundamentals of Optical Measurements and Instrumentation,theory,3.0
+CFOC245M,Fundamentals of Semiconductor Devices,theory,3.0
+CFOC246M,Characterization of Construction Materials,theory,3.0
+CFOC247M,Introduction to Civil Engineering Profession,theory,2.0
+CFOC248M,Environmental Geomechanics,theory,3.0
+CFOC249M,Mechanical Characterization of Bituminous Materials,theory,3.0
+CFOC250M,Geosynthetics and Reinforced Soil Structures,theory,3.0
+CFOC251M,Geotechnical Engineering II Foundation Engineering,theory,3.0
+CFOC252M,Landscape Architecture and Site Planning - Basic Fundamentals,theory,2.0
+CFOC253M,Plastic Waste Management,theory,2.0
+CFOC254M,Advanced Topics in the Science and Technology of Concrete,theory,1.0
+CFOC255M,Applied Environmental Microbiology,theory,3.0
+CFOC256M,Digital Land Surveying And Mapping (DLS&M),theory,2.0
+CFOC257M,Earthquake Geology: A tool for Seismic Hazard Assessment,theory,3.0
+CFOC258M,Introduction to Geographic Information Systems,theory,1.0
+CFOC259M,Structural Dynamics,theory,4.0
+CFOC260M,Water Supply Engineering,theory,3.0
+CFOC261M,Geo Spatial Analysis in Urban Planning,theory,1.0
+CFOC262M,Geotechnical Engineering - 1,theory,3.0
+CFOC263M,Maintenance and Repair of Concrete Structures,theory,3.0
+CFOC264M,Thermodynamics,theory,3.0
+CFOC265M,Geomorphology,theory,3.0
+CFOC266M,Remote Sensing Essentials,theory,3.0
+CFOC267M,Hydraulic Engineering,theory,3.0
+CFOC268M,Environmental Quality Monitoring and Analysis,theory,3.0
+CFOC269M,Electrochemical Technology in Pollution Control,theory,2.0
+CFOC270M,Advanced Thermodynamics,theory,3.0
+CFOC271M,Membrane Technology,theory,3.0
+CFOC272M,Computational Fluid Dynamics,theory,3.0
+CFOC273M,Transport phenomena,theory,3.0
+CFOC274M,Optimization in Chemical Engineering,theory,3.0
+CFOC275M,Soft Nano Technology,theory,2.0
+CFOC276M,Transport processes I - Heat and Mass Transfer,theory,3.0
+CFOC277M,"Process Control - Design, Analysis and Assessment",theory,3.0
+CFOC278M,Heat Transfer,theory,3.0
+CFOC279M,Chemical Reaction Engineering II,theory,3.0
+CFOC280M,Multiphase Flows,theory,2.0
+CFOC281M,Mass Transfer Operations - I,theory,3.0
+CFOC282M,Waste to Energy Conversion,theory,2.0
+CFOC283M,Equipment Design : Mechanical Aspects,theory,1.0
+CFOC284M,An Introduction to Cardiovascular Fluid Mechanics,theory,1.0
+CFOC285M,Computer Aided Applied Single Objective Optimization,theory,2.0
+CFOC286M,Basic Principles and Calculations in Chemical Engineering,theory,3.0
+CFOC287M,Introduction to Blockchain Technology and Applications,theory,2.0
+CFOC288M,Foundations of Cryptography,theory,3.0
+CFOC289M,Introduction to Database Systems,theory,3.0
+CFOC290M,Operating System,theory,3.0
+CFOC291M,Programming in C++,theory,2.0
+CFOC292M,Programming in Java,theory,3.0
+CFOC293M,Data Base Management System,theory,2.0
+CFOC294M,Introduction to Algorithms and Analysis,theory,3.0
+CFOC295M,Data Mining,theory,2.0
+CFOC296M,Embedded Systems Design,theory,3.0
+CFOC297M,Real Time Operating System,theory,1.0
+CFOC298M,Introduction to Soft Computing,theory,2.0
+CFOC299M,Cryptography and Network Security,theory,3.0
+CFOC300M,Introduction to Internet of Things,theory,3.0
+CFOC301M,Computer Networks and Internet Protocol,theory,3.0
+CFOC302M,Introduction to Industry 4.0 and Industrial Internet of Things,theory,3.0
+CFOC303M,Computer Architecture,theory,3.0
+CFOC304M,"Programming, Data Structures And Algorithms Using Python",theory,2.0
+CFOC305M,Introduction to Machine Learning,theory,3.0
+CFOC306M,Social Networks,theory,3.0
+CFOC307M,Foundations to Computer Systems Design,theory,3.0
+CFOC308M,The Joy of Computing using Python,theory,3.0
+CFOC309M,Discrete Mathematics,theory,3.0
+CFOC310M,An Introduction to Artificial Intelligence,theory,3.0
+CFOC311M,User-centric Computing for Human-Computer Interaction,theory,3.0
+CFOC312M,Cloud Computing and Distributed Systems,theory,2.0
+CFOC313M,Machine Learning,theory,2.0
+CFOC314M,Modern Application Development,theory,3.0
+CFOC315M,An Introduction To Programming Through C++,theory,3.0
+CFOC316M,Design and Pedagogy of the Introductory Programming Course,theory,1.0
+CFOC317M,Quantitative Methods in Chemistry,theory,3.0
+CFOC318M,Basics in Inorganic Chemistry,theory,1.0
+CFOC319M,Ultrafast Laser Spectroscopy,theory,3.0
+CFOC320M,Transition Metal Organometallics in Catalysis and Biology,theory,3.0
+CFOC321M,Essentials of Biomolecules : Nucleic Acids and Peptides,theory,3.0
+CFOC322M,Fundamentals of Spectroscopy,theory,3.0
+CFOC323M,Advanced Chemical Thermodynamics and Kinetics,theory,3.0
+CFOC324M,Biochemistry,theory,3.0
+CFOC325M,Organometallic Chemistry,theory,1.0
+CFOC326M,Chemical Applications of Symmetry and Group Theory,theory,2.0
+CFOC327M,Basic Thermodynamics : Classical and Statistical Approaches,theory,3.0
+CFOC328M,Medicinal Chemistry,theory,3.0
+CFOC329M,"Design, Technology and Innovation",theory,2.0
+CFOC330M,Geographic Information System,theory,3.0
+CFOC331M,Product Design and Innovation,theory,1.0
+CFOC332M,Fundamentals of Automotive Systems,theory,3.0
+CFOC333M,Electronics Equipment Integration and Prototype Building,theory,2.0
+CFOC334M,"High Power Multilevel Converters-Analysis, Design and Operational Issues",theory,3.0
+CFOC335M,"Fuzzy Sets, Logic and Systems and Applications",theory,3.0
+CFOC336M,Transmission Lines and Electromagnetic Waves,theory,3.0
+CFOC337M,Digital IC Design,theory,3.0
+CFOC338M,Signals and Systems,theory,3.0
+CFOC339M,Power Management Integrated Circuits,theory,3.0
+CFOC340M,DC Power Transmission Systems,theory,3.0
+CFOC341M,Microprocessors and Interfacing,theory,3.0
+CFOC342M,Design and Simulation of Power Conversion using Open Source Tools,theory,1.0
+CFOC343M,"Integrated Circuits, MOSFETs, OP-Amps and their Applications",theory,3.0
+CFOC344M,Electronic Systems for Cancer Diagnosis,theory,3.0
+CFOC345M,Principles of Signals and Systems,theory,3.0
+CFOC346M,Principles of Communication Systems - I,theory,3.0
+CFOC347M,Principles of Digital Communication,theory,3.0
+CFOC348M,Electric Vehicles - Part 1,theory,1.0
+CFOC349M,Nonlinear Adaptive Control,theory,1.0
+CFOC350M,Antennas,theory,3.0
+CFOC351M,Multirate DSP,theory,3.0
+CFOC352M,Control Engineering,theory,3.0
+CFOC353M,Introduction to Photonics,theory,3.0
+CFOC354M,Microwave Integrated Circuits 2,theory,2.0
+CFOC355M,Analog IC Design,theory,3.0
+CFOC356M,Analog Circuits,theory,3.0
+CFOC357M,Advance Power Electronics and Control,theory,2.0
+CFOC358M,CMOS Digital VLSI Design,theory,2.0
+CFOC359M,Analog Circuits and Systems through SPICE Simulation,theory,3.0
+CFOC360M,Discrete Time Signal Processing,theory,2.0
+CFOC361M,Digital Electronic Circuits,theory,3.0
+CFOC362M,Fundamentals of MIMO Wireless Communication,theory,2.0
+CFOC363M,Spread Spectrum Communications and Jamming,theory,3.0
+CFOC364M,Basic Building Blocks of Microwave Engineering & Design Principles of RF and Microware filters and Amplifiers,theory,2.0
+CFOC365M,Evolution of Air Interface towards 5G,theory,2.0
+CFOC366M,Architectural Design of Digital Integrated Circuits,theory,3.0
+CFOC367M,Electrical Machines - II,theory,3.0
+CFOC368M,Medical Image Analysis,theory,1.0
+CFOC369M,Biomedical Signal Processing,theory,3.0
+CFOC370M,Microprocessors And Microcontrollers,theory,3.0
+CFOC371M,Recent Advances in Transmission Insulator,theory,1.0
+CFOC372M,VLSI Signal Processing,theory,2.0
+CFOC373M,Analog Electronic Circuits,theory,3.0
+CFOC374M,Network Analysis,theory,3.0
+CFOC375M,Optical Engineering,theory,3.0
+CFOC376M,Mathematical Methods and Techniques in Signal Processing,theory,3.0
+CFOC377M,A brief introduction of Micro â€“ Sensors,theory,1.0
+CFOC378M,Statistical Signal Processing,theory,3.0
+CFOC379M,Nonlinear System Analysis,theory,3.0
+CFOC380M,Ethics in Engineering Practice,theory,2.0
+CFOC381M,Introduction to Research,theory,2.0
+CFOC382M,Matlab Programming for Numerical Computation,theory,2.0
+CFOC383M,Roadmap for Patent Creation,theory,2.0
+CFOC384M,Entrepreneurship Essentials,theory,3.0
+CFOC385M,Fuzzy Logic and Neural Networks,theory,2.0
+CFOC386M,Microeconomics : Theory & Applications,theory,3.0
+CFOC387M,Introduction to Environmental Economics,theory,3.0
+CFOC388M,"Energy Resources, Economics and Environment",theory,3.0
+CFOC389M,Literary Criticism (From Plato to Leavis),theory,3.0
+CFOC390M,Twentieth Century Fiction,theory,3.0
+CFOC391M,Effective Writing,theory,1.0
+CFOC392M,Strategic Trade and Protectionism - Theories and Empirics,theory,2.0
+CFOC393M,Introduction to Cultural Studies,theory,3.0
+CFOC394M,Introduction to Basic Spoken Sanskrit,theory,1.0
+CFOC395M,Speaking Effectively,theory,2.0
+CFOC396M,Soft Skill Development,theory,2.0
+CFOC397M,Intellectual Property,theory,3.0
+CFOC398M,English Language for Competitive Exams,theory,3.0
+CFOC399M,English Literature for Competitive Exams,theory,2.0
+CFOC400M,Language and Mind,theory,2.0
+CFOC401M,The Nineteenth - Century English Novel,theory,3.0
+CFOC402M,Introduction to World Literature,theory,3.0
+CFOC403M,Patent Drafting for Beginners,theory,1.0
+CFOC404M,Patent Law for Engineers and Scientists,theory,3.0
+CFOC405M,Economic Growth & Development,theory,2.0
+CFOC406M,Human Behaviour,theory,2.0
+CFOC407M,Introduction to Modern Indian Political Thought,theory,3.0
+CFOC408M,"English Literature of the Romantic Period, 1798 - 1832",theory,2.0
+CFOC409M,"Literature, Culture and Media",theory,3.0
+CFOC410M,Introduction to Brain & Behaviour,theory,2.0
+CFOC411M,Modern Indian Writing in Translation,theory,3.0
+CFOC412M,"Introduction to Political Ideologies : Contexts, Ideas, and Practices",theory,3.0
+CFOC413M,Indian Business History,theory,2.0
+CFOC414M,German - II,theory,3.0
+CFOC415M,German - I,theory,3.0
+CFOC416M,Feminism : Concepts and Theories,theory,3.0
+CFOC417M,An Introduction to Smooth Manifolds,theory,3.0
+CFOC418M,Measure Theory,theory,3.0
+CFOC419M,Basic Real Analysis,theory,3.0
+CFOC420M,Probabilistic Methods in PDE,theory,3.0
+CFOC421M,Graph Theory,theory,2.0
+CFOC422M,Transform Calculus and its applications in Differential Equations,theory,3.0
+CFOC423M,Integral and Vector Calculus,theory,3.0
+CFOC424M,Basic Linear Algebra,theory,2.0
+CFOC425M,Introduction to Rings And Fields,theory,2.0
+CFOC426M,Numerical Methods : Finite Difference Approach,theory,1.0
+CFOC427M,Numerical Linear Algebra,theory,3.0
+CFOC428M,Ordinary and Partial Differential Equations and Applications,theory,3.0
+CFOC429M,Advanced Engineering Mathematics,theory,3.0
+CFOC430M,Mathematical Methods and its Applications,theory,3.0
+CFOC431M,Multivariable Calculus,theory,2.0
+CFOC432M,Chaotic Dynamical System,theory,3.0
+CFOC433M,Engineering Mathematics II,theory,3.0
+CFOC434M,Advanced Probability Theory,theory,3.0
+CFOC435M,Statistical Inference,theory,2.0
+CFOC436M,Introduction to Algebraic Geometry and Commutative Algebra,theory,3.0
+CFOC437M,Linear Algebra,theory,3.0
+CFOC438M,Introduction to Probability and Statistics,theory,1.0
+CFOC439M,Descriptive Statistics with R Software,theory,2.0
+CFOC440M,Engineering Mechanics - Statics and Dynamics,theory,2.0
+CFOC441M,Experimental Stress Analysis,theory,3.0
+CFOC442M,Robotics and Control : Theory and Practice,theory,2.0
+CFOC443M,Computational Fluid Dynamics for Incompressible Flows,theory,3.0
+CFOC444M,Experimental Methods in Fluid Mechanics,theory,3.0
+CFOC445M,Foundations of Computational Materials Modelling,theory,3.0
+CFOC446M,Acoustic Materials and Metamaterials,theory,2.0
+CFOC447M,Power Plant Engineering,theory,2.0
+CFOC448M,Applied Ergonomics,theory,3.0
+CFOC449M,Product Design and Manufacturing,theory,3.0
+CFOC450M,Manufacturing Process Technology I & II,theory,3.0
+CFOC451M,Introduction To Mechanical Micro Machining,theory,3.0
+CFOC452M,"Non Traditional Abrasive Machining Processes Ultrasonic, Abrasive Jet and Abrasive Water Jet Machining",theory,1.0
+CFOC453M,Gear And Gear Unit Design : Theory And Practice,theory,2.0
+CFOC454M,Conduction and Convection Heat Transfer,theory,3.0
+CFOC455M,Laws of Thermodynamics,theory,1.0
+CFOC456M,Kinematics of Mechanisms and Machines,theory,2.0
+CFOC457M,Introduction To Fluid Mechanics,theory,3.0
+CFOC458M,Fundamental of Welding Science and Technology,theory,2.0
+CFOC459M,Introduction to Abrasive Machining and Finishing Processes,theory,2.0
+CFOC460M,Automatic Control,theory,2.0
+CFOC461M,Inspection and Quality Control in Manufacturing,theory,1.0
+CFOC462M,Diffusion in Multicomponent Solids,theory,3.0
+CFOC463M,Processing of Polymers and Polymer Composites,theory,2.0
+CFOC464M,Operations Management,theory,3.0
+CFOC465M,Convective Heat Transfer,theory,1.0
+CFOC466M,Two phase flow and heat transfer,theory,1.0
+CFOC467M,Steam and Gas Power Systems,theory,2.0
+CFOC468M,Principles of Casting Technology,theory,2.0
+CFOC469M,Financial Mathematics,theory,3.0
+CFOC470M,Modelling and Simulation of Dynamic Systems,theory,2.0
+CFOC471M,Fundamentals of combustion for propulsion,theory,2.0
+CFOC472M,Industrial Automation And Control,theory,3.0
+CFOC473M,Fundamentals of Nuclear Power Generation,theory,3.0
+CFOC474M,Mechanics of Machining,theory,2.0
+CFOC475M,IC Engines and Gas Turbines,theory,3.0
+CFOC476M,Principles of Industrial Engineering,theory,3.0
+CFOC477M,Computer Integrated Manufacturing,theory,3.0
+CFOC478M,Machining Science,theory,1.0
+CFOC479M,Introduction to Stochastic Processes,theory,3.0
+CFOC480M,Introduction to System Dynamics Modeling,theory,2.0
+CFOC481M,Management of New Products and Services,theory,1.0
+CFOC482M,Integrated Marketing Management,theory,2.0
+CFOC483M,Simulation of Business Systems: An Applied Approach,theory,2.0
+CFOC484M,Production and Operation Management,theory,3.0
+CFOC485M,"Services Marketing : Integrating People, Technology, Strategy",theory,2.0
+CFOC486M,Managerial Skills for Interpersonal Dynamics,theory,3.0
+CFOC487M,Financial Institutions and Markets,theory,3.0
+CFOC488M,Business Analytics For Management Decision,theory,3.0
+CFOC489M,Services Marketing : A Practical Approach,theory,1.0
+CFOC490M,Sales and Distribution Management,theory,2.0
+CFOC491M,Principles of Human Resource Management,theory,2.0
+CFOC492M,Managing change in organizations,theory,2.0
+CFOC493M,Management of Inventory Systems,theory,3.0
+CFOC494M,Quality Design And Control,theory,3.0
+CFOC495M,Foundation Course in Managerial Economics,theory,2.0
+CFOC496M,Engineering Econometrics,theory,3.0
+CFOC497M,Financial Statement Analysis and Reporting,theory,3.0
+CFOC498M,Business Statistics,theory,3.0
+CFOC499M,Global Marketing Management,theory,2.0
+CFOC500M,Marketing Research and Analysis - II,theory,3.0
+CFOC501M,Infrastructure Planning and Managements,theory,3.0
+CFOC502M,Modelling and Analytics for Supply Chain Management,theory,3.0
+CFOC503M,Marketing Analytics,theory,3.0
+CFOC504M,Financial Management For Managers,theory,3.0
+CFOC505M,Management of Commercial Banking,theory,3.0
+CFOC506M,Behavioral and Personal Finance,theory,2.0
+CFOC507M,Total Quality Management - 1,theory,2.0
+CFOC508M,Entrepreneurship,theory,3.0
+CFOC509M,Modeling of Tundish Steelmaking Process in Continuous Casting,theory,2.0
+CFOC510M,Fundamentals of Electronic Materials and Devices,theory,2.0
+CFOC511M,Introduction to Materials Science and Engineering,theory,3.0
+CFOC512M,Corrosion - Part I,theory,2.0
+CFOC513M,"Solar Photovoltaics: Principles, Technologies and Materials",theory,2.0
+CFOC514M,Welding Processes,theory,3.0
+CFOC515M,Theory and Practice of Non Destructive Testing,theory,2.0
+CFOC516M,Steel Quality: Role of Secondary Refining and Continuous Casting,theory,3.0
+CFOC517M,Materials Science and Engineering,theory,2.0
+CFOC518M,Surface Engineering of Nanomaterials,theory,2.0
+CFOC519M,"Dealing with Materials Data: Collection, Analysis and Interpretation",theory,3.0
+CFOC520M,Friction and Wear of Materials: Principle and Case Studies,theory,2.0
+CFOC521M,Material Characterization,theory,3.0
+CFOC522M,Offshore Structures Under Special Environmental Loads Including Fire Resistance,theory,3.0
+CFOC523M,Physics of Biological Systems,theory,3.0
+CFOC524M,Group Theory methods in Physics,theory,3.0
+CFOC525M,Experimental Physics - II,theory,3.0
+CFOC526M,Quantum Mechanics I,theory,3.0
+CFOC527M,A Brief Course on Superconductivity,theory,1.0
+CFOC528M,Fiber Optics,theory,2.0
+CFOC529M,Electromagnetism,theory,3.0
+CFOC530M,Experimental Physics III,theory,3.0
+CFOC531M,Electronic Theory of Solids,theory,3.0
+CFOC532M,Introduction to Atmospheric and Space Sciences,theory,3.0
+CFOC533M,Optical Sensors,theory,1.0
+CFOC534M,Evaluation of Textiles Materials,theory,3.0
+CFOC535M,Advanced Textile Printing Technology,theory,2.0
+CFOC536M,Textured Yarn Technology,theory,3.0
+CFOC537M,Theory of Yarn Structure,theory,3.0
+CFOC538M,Testing of Functional and Technical Textiles,theory,2.0
+CFOC539M,"Applied Optimization for Wireless, Machine Learning, Big Data",theory,3.0
+CFOC540M,Deep Learning for Computer Vision,theory,3.0
+CFOC541M,Deep Learning for Visual Computing,theory,3.0
+CFOC542M,Principles of Compiler Design,theory,3.0
+CFOC543M,International Business,theory,3.0
+CFOC544M,Learning Analytics Tools,theory,3.0
+CFOC545M,Advanced IoT Applications,theory,2.0
+CFOC546M,Algorithms for Big Data,theory,2.0
+CFOC547M,Decision Making Using Financial Accounting,theory,2.0
+CFOC548M,Introduction on Intellectual Property to Engineers and Technologists,theory,2.0
+CFOC549M,Introduction to Quantum Computing: Quantum Algorithms and Qiskit,theory,1.0
+CFOC550M,Numerical Analysis,theory,4.0
+CFOC551M,Quantum Technology and Quantum Phenomena in Macroscopic Systems,theory,3.0
+CFOC552M,Electrochemical Impedance Spectroscopy,theory,3.0
+CFOC553M,Carbon Materials and Manufacturing,theory,3.0
+CFOC554M,Electronic Packaging and Manufacturing,theory,2.0
+CFOC555M,Finite Element Method,theory,3.0
+CFOC556M,Physics of Materials,theory,3.0
+CFOC557M,X-ray Crystallography and Diffraction,theory,3.0
+CFOC558M,"Solar Photovoltaics Fundamentals, Technology and Applications",theory,2.0
+CFOC559M,Design of Photovoltaic Systems,theory,3.0
+CFOC560M,Fundamentals of Micro and Nanofabrication,theory,3.0
+CFOC561M,Biomedical Nanotechnology,theory,1.0
+CFOC562M,Design and Analysis of VLSI Subsystems,theory,3.0
+CFOC563M,Physics of Nanoscale Devices,theory,3.0
+CFOC564M,Photonic Integrated Circuit,theory,3.0
+CFOC565M,Technologies for Clean and Renewable Energy Production,theory,2.0
+CFOC566M,Elements of Solar Energy Conversion,theory,3.0
+CFOC567M,Physics of Renewable Energy Systems,theory,3.0
+CFOC568M,Structural Analysis of Nanomaterials,theory,1.0
+CFOC569M,Computational Approach to Materials Science and Engineering,theory,2.0
+CFOC570M,Public Speaking,theory,3.0
+CFOC571M,Introduction To CFD,theory,3.0
+CFOC572M,Dairy And Food Process And Products Technology,theory,3.0
+CFOC573M,Fundamentals Of Food Process Engineering,theory,3.0
+CFOC574M,Micro Irrigation Engineering,theory,3.0
+CFOC575M,Wildlife Ecology,theory,3.0
+CFOC576M,Integrated Waste Management For A Smart City,theory,3.0
+CFOC577M,Introduction To Multimodal Urban Transportation Systems (MUTS),theory,3.0
+CFOC578M,Wastewater Treatment And Recycling,theory,3.0
+CFOC579M,Structural Geology,theory,3.0
+CFOC580M,Real-Time Systems,theory,3.0
+CFOC581M,Algorithmic Game Theory,theory,3.0
+CFOC582M,Computational Number Theory and Algebra,theory,3.0
+CFOC583M,Power System Protection,theory,3.0
+CFOC585M,Great Experiments In Psychology,theory,1.0
+CFOC586M,Spoken Sanskrit: Basic and Intermediate Levels,theory,3.0
+CFOC587M,Economics of Banking and Finance Markets,theory,3.0
+CFOC588M,Concepts Of Thermodynamics,theory,3.0
+CFOC589M,Engineering Drawing And Computer Graphics,theory,3.0
+CFOC590M,Management Information System,theory,3.0
+CFOC591M,Principles Of Management,theory,3.0
+CFOC592M,Stress Management,theory,1.0
+CFOC593M,Corporate Finance,theory,2.0
+CFOC594M,Customer Relationship Management,theory,2.0
+CFOC595M,Urbanization and Environment,theory,2.0
+CFOC596M,Digital Speech Processing,theory,2.0
+CFOC597M,Globalization And Culture,theory,2.0
+CFOC598M,Elements of Visual Representation,theory,2.0
+CFOC599M,Leadership and Team Effectiveness,theory,3.0
+CFOC600M,Data Analysis for Biologists,theory,2.0
+CFOC601M,Advance Course in Social Psychology,theory,3.0
+CFOC602M,Product and Brand Management,theory,3.0
+CFOC603M,Quantitative Investment Management,theory,2.0
+CFOC604M,Entrepreneurship and IP Strategy,theory,2.0
+CFOC605M,"Sensor Technologies: Physics, Fabrication, and Circuits",theory,2.0
+CFOC606M,Ecology and Environment,theory,2.0
+CFOC607M,Analog VLSI Design,theory,1.0
+CFOC608M,The Science of Happiness and Wellbeing,theory,2.0
+CFOC609M,Introduction to Basic Spoken Sanskrit and Intermediate Level of Spoken Sanskrit,theory,3.0
+CFOC610M,Advanced Algorithmic Trading and Portfolio Management,theory,2.0
+CFOC611M,Advanced Quantum Mechanics with Applications,theory,2.0
+CFOC612M,Business Fundamentals for Entrepreneurs,theory,1.0
+CFOC613M,C-Based VLSI Design,theory,3.0
+CFOC614M,The Popular Gothic Novel,theory,3.0
+CFOC615M,Introduction To Biomimicry,theory,2.0
+CFOC616M,Applied Linguistics,theory,3.0
+CFOC617M,Gender and Literature,theory,2.0
+CFOC618M,Developing,theory,2.0
+CFOC619M,Corporate Finance_2,theory,2.0
+CFOC620M,Architectural Acoustics,theory,2.0
+CFOC621M,An Introduction to Indian Literary Theory,theory,2.0
+CFOC622M,"Indian Art: Materials, Techniques and Artistic Practices",theory,3.0
+CFOC623M,Space Flight Mechanics,theory,3.0
+CFOC624M,Industrial Safety Engineering,theory,3.0
+CFOC625M,Advanced Thermodynamics and Combustion,theory,3.0
+CFOC626M,Postmodernism in Literature,theory,2.0
+CFOC627M,Natural Language Processing,theory,3.0
+CFOC628M,Appreciating Carnatic Music,theory,2.0
+CFOC629M,Body language:Key to Professional Success,theory,1.0
+CFOC630M,Business To Business Marketing,theory,3.0
+CFOC631M,Conservation Geography,theory,3.0
+CFOC632M,Enclosure design of Electronics equipment,theory,3.0
+CFOC633M,Environment And Development,theory,3.0
+CFOC634M,Introduction to Aerospace Engineering,theory,3.0
+CFOC635M,Operations And Supply Chain Management,theory,3.0
+CFOC636M,Programming in modern c++,theory,3.0
+CFOC637M,Psychology Of Learning,theory,3.0
+CFOC638M,"Urban Utilities Planning : Water Supply, Sanitation And Drainage",theory,3.0
+CFOC639M,Research Methodology,theory,2.0
+CFOC640M,Communication Networks,theory,3.0
+CFOC641M,Aircraft Design,theory,3.0
+CFOC642M,Conservation Economics,theory,3.0
+CFOC643M,Cryogenic Hydrogen Technology,theory,2.0
+CFOC644M,Explosions and Safety,theory,3.0
+CFOC645M,Financial Accounting,theory,2.0
+CFOC646M,Philosophy and Critical Thinking,theory,3.0
+CFOC647M,Air pollution and Control,theory,3.0
+CFOC648M,Centre-State Relations in India,theory,2.0
+CFOC649M,"Energy Resources, Economics, and Sustainability",theory,2.0
+CFOC650M,Human Physiology,theory,3.0
+CFOC651M,"Psychology of Stress, Health and Well-being",theory,3.0
+CFOC652M,Signal Processing Techniques and its Applications,theory,3.0
+CFOC653M,Strength & Conditioning for the Indian Population,theory,3.0
+CFOC654M,The Evolution of the Earth and Life,theory,3.0
+CFOC655M,United Nations Sustainable Development Goals (UN SDGs),theory,3.0
+CFOC656M,Usability Engineering,theory,3.0
+CFOC658M,Design Practice - II,theory,2.0
+CFOC659M,Essentials of Data Science With R Software - 1: Probability and Statistical Inference,theory,3.0
+CFOC660M,Applied Linear Algebra in AI and ML,theory,3.0
+CFOC669M,Responsible & Safe AI Systems,theory,3.0
+CFOC678M,Fundamentals of Ecology,theory,3.0
+CFOC692M,Education for Sustainable Development,theory,3.0
+CFOC705M,Introduction to Graphic Design,theory,2.0
+CFOC721M,AI in Human Resource Management,theory,3.0
+BCHY102N,Environmental Sciences,other,2.0
+BCSE101N,Introduction to Engineering,other,1.0
+BEXC100N,Extra curricular activities Basket,other,2.0
+BHUM101N,Ethics and Values,other,2.0
+BSSC101N,Essence of Traditional Knowledge,other,2.0
+BSSC102N,Indian Constitution,other,2.0
+BENG101N,Effective English Communication,other,2.0
+BCSE209L,Machine Learning,theory,3.0
+BCSE209P,Machine Learning Lab,lab,1.0
+BCSE332L,Deep Learning,theory,3.0
+BCSE332P,Deep Learning Lab,lab,1.0
+BCSE416L,Game Programming,theory,3.0
+BCSE416P,Game Programming Lab,lab,1.0
+BCSE417L,Machine vision,theory,3.0
+BCSE417P,Machine Vision Lab,lab,1.0
+BCSE418L,Explainable Artificial Intelligence,theory,2.0
+BCSE419L,Speech and Language Processing,theory,3.0
+BCSE419P,Speech and Language Processing lab,lab,1.0
+BCSE427L,Cognitive Robotics,theory,2.0
+BCSE427P,Cognitive Robotics Lab,lab,1.0
+BCSE428L,Autonomous Drones,theory,2.0
+BCSE428P,Autonomous Drones Lab,lab,1.0
+BCSE432E,Reinforcement Learning,embedded,4.0
+BECM302E,Augmented and Virtual Reality,embedded,4.0

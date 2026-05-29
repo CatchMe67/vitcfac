@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0C0C0B">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="a17e189f-067d-4427-bf09-622577ed5cc0"></script>
+  <style>
+    /* Premium Dashboard Specific Styles */
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .admin-title-group h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .admin-title-group p {
+      font-size: 13px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .admin-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .admin-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--border3);
+    }
+    .admin-card-val {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--font-mono);
+      margin-bottom: 6px;
+    }
+    .admin-card-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .dashboard-layout {
+        grid-template-columns: 2.5fr 1fr;
+      }
+    }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 0.75rem;
+    }
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+    /* Lock Page Screen */
+    .lock-screen {
+      max-width: 400px;
+      margin: 100px auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .lock-icon {
+      font-size: 40px;
+      margin-bottom: 1.5rem;
+      color: var(--muted);
+    }
+    .lock-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .lock-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .lock-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .lock-input:focus {
+      border-color: var(--border3);
+    }
+    .lock-btn {
+      width: 100%;
+      background: var(--text);
+      color: var(--background);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .lock-btn:hover {
+      opacity: 0.9;
+    }
+    /* Scrollable Admin Table styling */
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid var(--border2);
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .admin-table th, .admin-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 0.5px solid var(--border);
+      white-space: nowrap;
+    }
+    .admin-table th {
+      background: var(--surface2);
+      font-weight: 600;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border3);
+    }
+    .admin-table tr:hover td {
+      background: var(--surface2);
+    }
+    .admin-table td {
+      color: var(--text);
+    }
+    .admin-table td.muted {
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+    .admin-table td.fp-cell {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Verdict badge modifiers */
+    .v-pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .v-pill.w {
+      background: rgba(255,255,255,0.06);
+      border: 0.5px solid var(--border3);
+      color: var(--text);
+    }
+    .v-pill.l {
+      background: rgba(255,255,255,0.02);
+      border: 0.5px solid var(--border);
+      color: var(--muted);
+    }
+    .badge-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .badge-tag {
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-size: 9px;
+      color: var(--muted);
+    }
+    /* Rank Listing */
+    .rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .rank-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      border-bottom: 0.5px solid var(--border);
+      font-size: 13px;
+    }
+    .rank-row:last-child {
+      border: none;
+    }
+    .rank-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .rank-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .rank-count {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      margin-top: 2px;
+    }
+    .rank-stat {
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text);
+    }
+    /* Logout button */
+    .btn-secondary {
+      background: transparent;
+      border: 0.5px solid var(--border2);
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--border3);
+      color: var(--text);
+      background: var(--surface2);
+    }
+    .stars-cell {
+      font-family: var(--font-mono);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Authentication screen -->
+  <div id="admin-auth" class="lock-screen" style="display:none">
+    <div class="lock-icon">🔒</div>
+    <h2 class="lock-title">Admin Access Only</h2>
+    <p class="lock-desc">Please enter the administrator access key to view live traffic & reviews.</p>
+    <input type="password" id="admin-password-input" class="lock-input" placeholder="Enter key..." autocomplete="current-password">
+    <button onclick="handleAdminLogin()" class="lock-btn">Unlock Console</button>
+  </div>
+
+  <!-- Dashboard screen -->
+  <div id="admin-dashboard" class="admin-container" style="display:none">
+    <div class="admin-header">
+      <div class="admin-title-group">
+        <h1>Operations Console</h1>
+        <p>Real-Time Database Traffic & Audit Log</p>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button onclick="triggerAdminReload()" class="btn-secondary" id="admin-refresh-btn" style="display:flex; align-items:center; gap:6px;">
+          🔄 Refresh
+        </button>
+        <button onclick="handleAdminLogout()" class="btn-secondary">Lock Console</button>
+      </div>
+    </div>
+
+    <!-- Metric grid -->
+    <div class="admin-grid">
+      <div class="admin-card">
+        <div class="admin-card-val" id="stat-active" style="color:#3D9E6A">0</div>
+        <div class="admin-card-label">Active Visitors (5m)</div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-val" id="stat-views">0</div>
+        <div class="admin-card-label">24h Pageviews</div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-val" id="stat-reviews">—</div>
+        <div class="admin-card-label">Total Submissions</div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-val" id="stat-profs">—</div>
+        <div class="admin-card-label">Total Faculty</div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-val" id="stat-ips">—</div>
+        <div class="admin-card-label">Unique Audit IPs</div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-val" id="stat-fps">—</div>
+        <div class="admin-card-label">Unique Browser FPs</div>
+      </div>
+    </div>
+
+    <!-- Layout panels -->
+    <div class="dashboard-layout">
+      <!-- Latest Reviews panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2 class="panel-title">Latest Submissions</h2>
+          <span class="panel-subtitle" id="traffic-time">LIVE TRAFFIC</span>
+        </div>
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Professor</th>
+                <th>Lec/DA/Asg/Vib</th>
+                <th>Vote</th>
+                <th>Tags</th>
+                <th>IP Address</th>
+                <th>Browser FP</th>
+              </tr>
+            </thead>
+            <tbody id="latest-reviews-rows">
+              <tr>
+                <td colspan="7" style="text-align:center;color:var(--muted);padding:30px">Fetching logs...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sidebar right panel -->
+      <div>
+        <div class="panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Top Reviewed</h2>
+          </div>
+          <div class="rank-list" id="top-reviewed-list">
+            <div style="color:var(--muted);font-size:12px;text-align:center;padding:20px">Loading stats...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="static/js/data.js"></script>
+<script src="static/js/main.js"></script>
+</body>
+</html>

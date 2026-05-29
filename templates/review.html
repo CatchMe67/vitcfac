@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0C0C0B">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Rate a Professor</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="a17e189f-067d-4427-bf09-622577ed5cc0"></script>
+</head>
+<body>
+<div class="page">
+
+  <div id="nav-slot"></div>
+  <div id="back-slot"></div>
+
+  <!-- Review Header -->
+  <div class="review-header page-fade">
+    <div class="review-for-label">Rating</div>
+    <div class="review-prof-name" id="prof-name">—</div>
+    <div class="review-progress" id="progress-bar">
+      <!-- 5 dots: 4 metrics + 1 verdict -->
+      <div class="progress-dot" id="pd-0"></div>
+      <div class="progress-dot" id="pd-1"></div>
+      <div class="progress-dot" id="pd-2"></div>
+      <div class="progress-dot" id="pd-3"></div>
+      <div class="progress-dot" id="pd-4"></div>
+    </div>
+  </div>
+
+  <!-- Review Body -->
+  <div class="review-body page-fade">
+
+    <!-- ── Metric star ratings ──────────────────────────────── -->
+    <div id="metrics-slot"></div>
+
+    <!-- ── Course selection ──────────────────────────────────── -->
+    <div class="form-group" style="margin-top: 24px; margin-bottom: 24px;">
+      <div class="form-label" style="margin-bottom:6px">Course Taught</div>
+      <p class="form-hint" style="margin-bottom:12px">Select the course you took with this professor.</p>
+      <div style="position:relative; width:100%;">
+        <input id="course-search" class="search-input" type="text" placeholder="Search course code or name (e.g. BCSE101E)..." style="width:100%; height:46px; background:var(--surface) url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23888880' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0'/%3E%3C/svg%3E&quot;) no-repeat 14px center; padding:0 12px 0 38px; color:var(--text); border:1px solid var(--border); border-radius:8px; font-family:var(--font-body); font-size:14px; outline:none; transition:border-color 0.2s;" oninput="handleCourseInput(this)" autocomplete="off">
+        <div id="course-suggestions" style="display:none; position:absolute; top:52px; left:0; right:0; max-height:220px; overflow-y:auto; background:var(--surface2); border:1px solid var(--border2); border-radius:8px; z-index:1000; box-shadow: 0 8px 24px rgba(0,0,0,0.5);"></div>
+      </div>
+    </div>
+
+    <!-- ── Lore chips ─────────────────────────────────────────── -->
+    <div class="lore-form-section">
+      <div class="form-label" style="margin-bottom:6px">Tags <span style="color:var(--muted); font-weight:normal; font-size:12px; margin-left:4px;">(Optional)</span></div>
+      <p class="form-hint" style="margin-bottom:14px">Select up to 3 tags that highlight your experience.</p>
+
+      <div class="lore-category-label">Positives</div>
+      <div class="lore-pick-grid" id="lore-green"></div>
+
+      <div class="lore-category-label">Considerations</div>
+      <div class="lore-pick-grid" id="lore-red"></div>
+
+      <div class="lore-counter" id="lore-count">0/3 selected</div>
+    </div>
+
+    <!-- ── Verdict ─────────────────────────────────────────────── -->
+    <div class="form-group">
+      <div class="form-label" style="margin-bottom:12px">Would you take again?</div>
+      <div class="verdict-pick">
+
+        <div class="verdict-btn" id="vbtn-w" onclick="pickVerdict('w')">
+          <span class="verdict-label">Hell yea</span>
+        </div>
+
+        <div class="verdict-btn" id="vbtn-l" onclick="pickVerdict('l')">
+          <span class="verdict-label">Hell nah</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Honeypot (anti-bot, hidden via CSS) ─────────────────── -->
+    <div class="hp-field" aria-hidden="true">
+      <input id="hp" type="text" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <!-- ── Submit ──────────────────────────────────────────────── -->
+    <button
+      class="submit-btn"
+      id="submit-btn"
+      type="button"
+      onclick="submitReview()"
+      disabled
+    >
+      Submit Rating
+    </button>
+
+
+  </div>
+</div>
+
+<div class="toast"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

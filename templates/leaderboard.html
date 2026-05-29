@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0C0C0B">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Rankings</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="a17e189f-067d-4427-bf09-622577ed5cc0"></script>
+</head>
+<body>
+<div class="page">
+
+  <div id="nav-slot"></div>
+
+  <a class="back-btn" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 5l-7 7 7 7"/>
+    </svg>
+    All Professors
+  </a>
+
+  <!-- Header -->
+  <div class="lb-page-header page-fade">
+    <div class="lb-page-eyebrow">Live Rankings</div>
+    <!-- Tabs -->
+    <div class="lb-tabs">
+      <div class="lb-tab active w-tab" id="tab-w" onclick="setLbTab('w')">
+        Top W Profs
+      </div>
+      <div class="lb-tab" id="tab-l" onclick="setLbTab('l')">
+        Notable L Profs
+      </div>
+    </div>
+  </div>
+
+  <!-- List -->
+  <div class="lb-list page-fade" id="lb-list"></div>
+  <div id="pagination-slot"></div>
+  <div id="request-teacher-slot"></div>
+
+  <!-- Bottom padding -->
+  <div style="height:32px"></div>
+
+</div>
+
+<div class="toast"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
