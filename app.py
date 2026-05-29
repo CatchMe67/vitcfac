@@ -229,8 +229,13 @@ def get_profs():
         profs.append(prof)
     
 
-    profs = [p for p in profs if (p.get("reviews") or 0) > 0]
-    profs.sort(key=lambda x: (-(x.get("reviews") or 0), -(x.get("wPct") or 0), x.get("name") or ""))
+
+    profs.sort(key=lambda x: (
+        -(1 if (x.get("reviews") or 0) > 0 else 0),
+        -(x.get("reviews") or 0),
+        -(x.get("wPct") or 0),
+        x.get("name") or ""
+    ))
     return jsonify(profs)
 
 
