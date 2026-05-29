@@ -581,27 +581,38 @@ body.dark .promo-banner-copy span {
 .share-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
+  gap: 8px;
+  min-height: 38px;
+  padding: 10px 14px;
   border-radius: 999px;
-  border: 0.5px solid var(--border2);
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(37, 211, 102, 0.18);
+  background: rgba(37, 211, 102, 0.05);
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-  transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transition: transform .16s ease, border-color .16s ease, background .16s ease, color .16s ease, box-shadow .16s ease;
 }
 .share-btn:hover {
   transform: translateY(-1px);
-  border-color: var(--border3);
-  background: var(--surface2);
+  border-color: rgba(37, 211, 102, 0.32);
+  background: rgba(37, 211, 102, 0.08);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.10);
 }
 .share-btn:active { transform: translateY(0); }
-.share-btn-icon { font-size: 12px; line-height: 1; }
+.share-btn-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2F9E66;
+  line-height: 1;
+  flex-shrink: 0;
+}
 .share-btn-label { line-height: 1; }
 .profile-dept-tag {
   font-family: var(--font-mono);
@@ -1628,11 +1639,11 @@ body.dark .promo-banner-copy span {
 @media (max-width: 480px) {
   .profile-name-row { gap: 8px; }
   .share-btn {
-    padding: 7px 10px;
-    font-size: 10px;
+    min-height: 36px;
+    padding: 9px 12px;
+    font-size: 11px;
     letter-spacing: 0.06em;
   }
-  .share-btn-label { display: none; }
 }
 
 /* ─── LARGE DESKTOP (1280px+) ───────────────────── */
