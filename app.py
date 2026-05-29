@@ -444,7 +444,18 @@ def submit_review(prof_id):
     if course_val:
         complete_lore.insert(0, f"Course: {course_val}")
 
+    # Anti-duplicate: allow one review per browser_fp + faculty_id + course_code
+    fp = body.get("fp") or body.get("browser_fp") or "unknown"
     try:
+        if course_val:
+            dup_q = supabase.table("reviews").select("id").eq("faculty_id", internal_id).eq("browser_fp", fp).eq("course_code", course_val).execute()
+        else:
+            # Match NULL course_code entries
+            dup_q = supabase.table("reviews").select("id").eq("faculty_id", internal_id).eq("browser_fp", fp).is_("course_code", None).execute()
+
+        if dup_q.data and len(dup_q.data) > 0:
+            return err("You have already submitted a review for this course and professor.", 409)
+
         supabase.table("reviews").insert({
             "faculty_id":    internal_id,
             "score_lecture": metrics["lecture"],
@@ -453,7 +464,7 @@ def submit_review(prof_id):
             "score_vibe":    metrics["vibe"],
             "verdict":       verdict,
             "lore_chips":    complete_lore,
-            "browser_fp":    body.get("fp") or body.get("browser_fp") or "unknown",
+            "browser_fp":    fp,
             "ip_address":    get_ip(),
             "course_code":   course_val if course_val else None
         }).execute()
