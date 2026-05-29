@@ -685,29 +685,35 @@ body.dark .promo-share-btn:hover {
 
 /* Inline share button placed next to verdict on profile */
 .profile-share-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   border-radius: 8px;
-  padding: 8px 12px;
-  min-height: 36px;
+  padding: 10px 16px;
+  min-height: 40px;
   background: #FFFFFF;
   color: #000000;
   border: none;
   box-shadow: 0 10px 30px rgba(0,0,0,0.18);
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
 }
 .profile-share-inline:hover { transform: translateY(-1px); }
 
-/* Light-theme variant: green primary for profile share */
+.profile-share-inline .share-icon-wh { width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; color:#25D366; flex-shrink:0; }
+
+/* Light-theme variant: green primary for profile share (button becomes green, icon white) */
 html[data-theme="light"] .profile-share-inline {
   background: #16A34A; /* green */
   color: #FFFFFF;
   box-shadow: 0 8px 22px rgba(22,163,74,0.12);
 }
 html[data-theme="light"] .profile-share-inline:hover { background: #15803D; }
+html[data-theme="light"] .profile-share-inline .share-icon-wh { color: #FFFFFF; }
 
 .course-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .course-tag {

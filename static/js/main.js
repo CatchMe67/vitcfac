@@ -135,16 +135,45 @@ function initIndex() {
 function renderPromoBanner() {
   const slot = el("promo-banner-slot");
   if (!slot) return;
+  // Track visits and shown counts to resurface banner intelligently
+  const visitKey = 'promo_visit_count_v1';
+  const shownKey = 'promo_banner_shown_v1';
+  const dismissedKey = 'promo_banner_dismissed_at_v1';
+  let visits = 0;
+  try { visits = parseInt(localStorage.getItem(visitKey) || '0', 10) || 0; visits += 1; localStorage.setItem(visitKey, String(visits)); } catch (e) { /* ignore */ }
 
-  const key = "promo_banner_hidden_v1";
-  const hidden = localStorage.getItem(key) === "1";
-  if (hidden) {
+  let shownCount = 0;
+  try { shownCount = parseInt(localStorage.getItem(shownKey) || '0', 10) || 0; } catch (e) { shownCount = 0; }
+  let dismissedAt = 0;
+  try { dismissedAt = parseInt(localStorage.getItem(dismissedKey) || '0', 10) || 0; } catch (e) { dismissedAt = 0; }
+
+  const now = Date.now();
+  const sixHours = 6 * 60 * 60 * 1000;
+
+  // Decide whether to show:
+  // - Always show first time (shownCount === 0)
+  // - Otherwise, show if we've hit 3+ visits OR it's been 6+ hours since dismissal
+  let shouldShow = false;
+  if (shownCount === 0) shouldShow = true;
+  else if (visits >= 3) shouldShow = true;
+  else if (dismissedAt && (now - dismissedAt) >= sixHours) shouldShow = true;
+
+  if (!shouldShow) {
     slot.innerHTML = "";
     slot.style.display = "none";
     return;
   }
 
+  // Prepare copy: show alternate copy on the second time the banner appears
+  const isSecond = shownCount >= 1;
+  const titleText = isSecond ? "Did you save from getting cooked 💀 If not then you still have chance 🙏🙏" : "Don't let your friends get cooked this sem. 💀💀";
+  const subtitle = "Drop the link in your class groups.";
+
+  // Mark shown
+  try { localStorage.setItem(shownKey, String(shownCount + 1)); } catch (e) {}
+
   slot.style.display = "block";
+  const titleHtml = titleText.replace(/\n/g, '<br>');
   slot.innerHTML = `
     <div class="promo-banner" role="region" aria-label="Promotional banner">
       <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner()">
@@ -153,8 +182,8 @@ function renderPromoBanner() {
         </svg>
       </button>
       <div class="promo-banner-copy">
-        <strong>Don't let your friends get cooked this sem. 💀💀</strong>
-        <span>Drop the link in your class groups.</span>
+        <strong>${titleHtml}</strong>
+        <span>${subtitle}</span>
       </div>
       <button class="promo-share-btn" type="button" onclick="shareHomepage()" aria-label="Share VITC Faculty Review">
         Share
@@ -194,7 +223,8 @@ window.shareHomepage = async function() {
 
 window.dismissPromoBanner = function() {
   try {
-    localStorage.setItem("promo_banner_hidden_v1", "1");
+    // Record dismissal timestamp so we can resurface later per rules
+    localStorage.setItem('promo_banner_dismissed_at_v1', String(Date.now()));
   } catch (e) {}
   const slot = el("promo-banner-slot");
   if (slot) {
@@ -603,6 +633,12 @@ function renderProfileDynamic(code, p, courseStats) {
         </div>
         <div class="verdict-actions">
           <button class="share-btn profile-share-inline" type="button" onclick='shareProfessor(${JSON.stringify(p.name)}, ${JSON.stringify(p.id)})' aria-label="Share this professor">
+            <span class="share-icon-wh" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M20.52 3.48a11.94 11.94 0 0 0-16.89 0 11.94 11.94 0 0 0 0 16.89L3 21l1.63-1A11.94 11.94 0 0 0 20.52 3.48zM12 19a7 7 0 0 1-3.86-1.18l-.28-.17L6 18l.39-1.86-.18-.29A7 7 0 1 1 12 19z"/>
+                <path d="M15.5 13.5c-.2-.1-1.2-.6-1.4-.6-.2 0-.4 0-.6.2-.2.2-.7.6-.8.7-.1.1-.2.2-.3.2-.1 0-.4 0-.8-.3-.4-.3-1.6-1-2.6-1.9-.9-.9-1.4-1.7-1.4-2.1 0-.4.1-.5.2-.6.1-.1.2-.2.4-.2.2-.1.4-.2.6-.2.2 0 .4 0 .6 0 .2 0 .5-.1.8-.1.3 0 .7 0 1 .5.3.5.8 1.5.9 1.6.2.1.3.2.4.3.1.1.1.2.2.3.1.2.1.3 0 .6-.1.3-.4.8-.7 1-.3.2-.7.5-.9.6-.2.1-.3.1-.5.1s-.5 0-1.1-.4c-.6-.4-1.1-.8-1.3-1-.2-.2-.5-.5-.6-.8-.1-.2-.1-.4-.1-.6s.1-.5.3-.8c.2-.3.6-.6 1.2-.5.6.1 1.3.6 1.7 1 .4.4 1 .9 1.5 1.1.5.2.9.3 1.1.4.2.1.5.3.6.4.1.1.2.2.1.3-.1.1-.2.2-.4.3z"/>
+              </svg>
+            </span>
             <span class="share-btn-label">Share</span>
           </button>
         </div>
