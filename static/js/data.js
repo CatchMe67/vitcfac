@@ -1,3 +1,8 @@
+/* ─── data.js ─────────────────────────────────────────────────────────────
+   Replace API stub calls with real fetch() to your Flask endpoints.
+   All mock data lives here during development.
+────────────────────────────────────────────────────────────────────────── */
+
 const DEPARTMENTS = ["ALL", "CSE", "ECE", "MECH", "SSL", "SBST", "OTHER"];
 
 const METRIC_DEFS = [
@@ -53,12 +58,13 @@ function hasReviewed(profId, course = null) {
     const fp = getFingerprint();
     const data = JSON.parse(localStorage.getItem("plore_v") || "{}");
     const entries = data[fp] || [];
-    if (course) {
-      const key = `${profId}::${course}`;
-      return entries.includes(key);
+    // course === null -> check ANY review for this prof (used when caller didn't pass a course)
+    if (course === null) {
+      return entries.some(e => e.startsWith(`${profId}::`));
     }
-    // If no course provided, return true if any review exists for this prof
-    return entries.some(e => e.startsWith(`${profId}::`));
+    // course === "" (empty string) -> check specifically for empty-course (global) reviews
+    const key = `${profId}::${course}`;
+    return entries.includes(key);
   } catch {
     return false;
   }
