@@ -408,7 +408,7 @@ window.switchSubjectTab = function(code) {
   if (activeTab) activeTab.classList.add("active");
 
   renderProfileDynamic(code, _profData, _courseStats);
-  renderProfileCTA(_profData, hasReviewed(_profData.id), code);
+  renderProfileCTA(_profData, hasReviewed(_profData.id, code), code);
   initBars();
 };
 
@@ -580,10 +580,12 @@ async function initReview() {
 
   if (!id) { go("index.html"); return; }
 
-  // Already reviewed?
-  if (hasReviewed(id)) {
-    go("profile.html", { id });
-    return;
+  // Already reviewed for the preset course? Only block if a course is specified.
+  if (presetCourse) {
+    if (hasReviewed(id, presetCourse)) {
+      go("profile.html", { id });
+      return;
+    }
   }
 
   const p = await API.getProf(id);
@@ -884,7 +886,7 @@ async function submitReview() {
     const result = await API.submitReview(_rv.profId, payload);
 
     if (result.success) {
-      markReviewed(_rv.profId);
+      markReviewed(_rv.profId, selectedCourse);
       showToast("Rating submitted. Lore recorded.");
       setTimeout(() => go("profile.html", { id: _rv.profId }), 1200);
     } else {
