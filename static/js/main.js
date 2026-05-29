@@ -60,7 +60,7 @@ function injectFooter() {
         <a class="footer-link" href="terms.html">Terms of Use</a>
         <a class="footer-link" href="privacy.html">Privacy Policy</a>
         <a class="footer-link" href="about.html">About</a>
-        <a id="footer-contact" class="footer-contact-btn" href="mailto:vit.fac@proton.me">Contact</a>
+        <a id="footer-contact" class="footer-link footer-contact-link" href="mailto:vit.fac@proton.me">Contact</a>
       </div>
     </div>
   `;
@@ -434,10 +434,12 @@ function renderProfileDynamic(code, p, courseStats) {
   // ── Verdict row ───────────────────────────────────────────────────────
   const verdictEl = el("profile-verdict-row");
   if (verdictEl) {
+    const lPct = 100 - wPct;  // Calculate L percentage
+    const displayPct = isW ? wPct : lPct;  // Show appropriate percentage
     verdictEl.innerHTML = `
       <div class="verdict-row">
         <div class="verdict-pct ${hasRevs ? (isW ? "w" : "l") : "neutral"}"
-             style="transition:color 0.3s">${hasRevs ? `${wPct}%` : "—%"}</div>
+             style="transition:color 0.3s">${hasRevs ? `${displayPct}%` : "—%"}</div>
         <div>
           <div class="verdict-meta-label ${hasRevs ? (isW ? "w" : "l") : "neutral"}"
                style="${hasRevs ? "" : "color:var(--muted);"}">
