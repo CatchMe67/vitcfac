@@ -14,6 +14,7 @@ import base64
 from functools import wraps
 from datetime import datetime
 from collections import Counter
+from html import escape
 
 import urllib.request
 import rjsmin
@@ -197,6 +198,151 @@ def make_placeholder_avatar(name: str = "?"):
             font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="700" fill="#233042">{initials}</text>
     </svg>'''
     return Response(svg, mimetype="image/svg+xml", headers={"Cache-Control": "no-store"})
+
+
+def get_prof_for_share(prof_id):
+    """Return a formatted professor payload for share pages and OG tags."""
+    real_id = decode_id(prof_id)
+    if not real_id:
+        return None
+
+    res = supabase.table("faculty").select("*, faculty_stats(*)").eq("employee_id", str(real_id)).execute()
+    if not res.data:
+        return None
+    return format_prof(res.data[0])
+
+
+def wrap_svg_text(text, max_chars=26, max_lines=2):
+    """Wrap text into SVG tspans without relying on external image libraries."""
+    words = (text or "").split()
+    if not words:
+        return ""
+
+    lines = []
+    current = words[0]
+    for word in words[1:]:
+        candidate = f"{current} {word}"
+        if len(candidate) <= max_chars or len(lines) >= max_lines - 1:
+            current = candidate
+        else:
+            lines.append(current)
+            current = word
+    lines.append(current)
+
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+
+    if len(lines) == max_lines and len(lines[-1]) > max_chars:
+        lines[-1] = lines[-1][: max_chars - 1].rstrip() + "…"
+
+    tspans = []
+    for i, line in enumerate(lines):
+        dy = 0 if i == 0 else 68
+        tspans.append(f'<tspan x="80" dy="{dy}">{escape(line)}</tspan>')
+    return "".join(tspans)
+
+
+def build_profile_og_svg(prof):
+    """Build a premium, lightweight OG image for professor profile shares."""
+    name = escape(prof.get("name") or "VITC Faculty Review")
+    dept = escape(prof.get("dept") or "Faculty")
+    courses = prof.get("courses") or []
+    course_text = escape(", ".join(courses[:4]) if courses else "Open the page for full stats")
+    reviews = int(prof.get("reviews") or 0)
+    w_count = int(prof.get("wCount") or 0)
+    l_count = int(prof.get("lCount") or 0)
+    w_pct = int(prof.get("wPct") or 0)
+    verdict = "W" if w_pct >= 60 else "L"
+    image_note = "Premium faculty preview"
+
+    if reviews > 0:
+        score_line = f"{verdict} rating · {w_pct}% win rate"
+        review_line = f"{reviews} review{'s' if reviews != 1 else ''} · W {w_count} / L {l_count}"
+    else:
+        score_line = "No ratings yet"
+        review_line = "Be the first to drop the lore"
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="{name} - VITC Faculty Review">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0B1220"/>
+          <stop offset="55%" stop-color="#141B2D"/>
+          <stop offset="100%" stop-color="#241637"/>
+        </linearGradient>
+        <radialGradient id="glow" cx="50%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.36"/>
+          <stop offset="70%" stop-color="#7C5CFF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="630" fill="url(#bg)"/>
+      <rect width="1200" height="630" fill="url(#glow)"/>
+      <circle cx="1030" cy="120" r="170" fill="#60A5FA" opacity="0.14"/>
+      <circle cx="1080" cy="525" r="210" fill="#A855F7" opacity="0.12"/>
+
+      <rect x="60" y="54" width="180" height="44" rx="22" fill="#FFFFFF" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.14"/>
+      <text x="150" y="82" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#E5E7EB" letter-spacing="2">VITC FACULTY REVIEW</text>
+
+      <text x="80" y="220" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800" fill="#FFFFFF">{wrap_svg_text(prof.get('name') or 'VITC Faculty Review')}</text>
+
+      <text x="82" y="356" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600" fill="#C7D2FE">{dept}</text>
+      <text x="82" y="402" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="500" fill="#CBD5E1">{escape(score_line)}</text>
+      <text x="82" y="446" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500" fill="#94A3B8">{escape(review_line)}</text>
+
+      <rect x="80" y="500" width="1040" height="2" rx="1" fill="#FFFFFF" fill-opacity="0.12"/>
+      <text x="82" y="548" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600" fill="#E5E7EB">{course_text}</text>
+      <text x="1118" y="548" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="500" fill="#94A3B8">{image_note}</text>
+    </svg>'''
+    return Response(svg, mimetype="image/svg+xml", headers={"Cache-Control": "public, max-age=86400"})
+
+
+def build_profile_html(prof_id=None):
+    """Inject social metadata into the profile page without changing the client app."""
+    template_path = os.path.join(app.root_path, "templates", "profile.html")
+    try:
+        with open(template_path, "r", encoding="utf-8") as f:
+            html = f.read()
+    except Exception:
+        return send_from_directory("templates", "profile.html")
+
+    prof = get_prof_for_share(prof_id) if prof_id else None
+    base_url = request.url_root.rstrip("/")
+    share_path = f"/prof/{prof_id}" if prof_id else "/profile.html"
+    og_title = f"{prof['name']} - VITC Faculty Review" if prof else "VITC Faculty Review"
+    og_desc = (
+        f"Check out the W/L stats, verdict vibe, and review lore for {prof['name']} before FFCS."
+        if prof else
+        "Check out faculty W/L stats, verdict vibe, and review lore before FFCS."
+    )
+    og_image = f"{base_url}/api/og/profs/{prof_id}.svg" if prof_id else f"{base_url}/api/og/default.svg"
+
+    meta_block = f"""
+  <link rel="canonical" href="{base_url}{share_path}">
+  <meta property="og:site_name" content="VITC Faculty Review">
+  <meta property="og:title" content="{escape(og_title)}">
+  <meta property="og:description" content="{escape(og_desc)}">
+  <meta property="og:url" content="{base_url}{share_path}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{og_image}">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{escape(og_title)}">
+  <meta name="twitter:description" content="{escape(og_desc)}">
+  <meta name="twitter:image" content="{og_image}">
+"""
+
+    html = html.replace(
+        '<meta name="robots" content="noindex, nofollow">',
+        '<meta name="robots" content="noindex, nofollow">\n' + meta_block,
+        1
+    )
+
+    if prof_id:
+        title = f"{escape(prof['name'])} - VITC Faculty Review" if prof else "Professor Profile - VITC Faculty Review"
+        html = html.replace("<title>Professor Profile</title>", f"<title>{title}</title>", 1)
+
+    return Response(html, mimetype="text/html")
 
 # ══════════════════════════════════════════════════════════════════════════
 #  ROUTES
@@ -430,6 +576,49 @@ def get_prof_stats_by_course(prof_id):
             })
 
     return jsonify({"global": global_stats, "courses": courses})
+
+
+@app.route("/profile.html")
+def profile_page():
+    """Serve the profile page with server-rendered social metadata."""
+    return build_profile_html(request.args.get("id"))
+
+
+@app.route("/prof/<prof_id>")
+def prof_share_page(prof_id):
+    """Pretty share URL for professor profiles."""
+    return build_profile_html(prof_id)
+
+
+@app.route("/api/og/profs/<prof_id>.svg")
+def prof_og_image(prof_id):
+    """Generate a lightweight OG image for professor shares."""
+    prof = get_prof_for_share(prof_id)
+    if not prof:
+        return build_profile_og_svg({
+            "name": "VITC Faculty Review",
+            "dept": "Faculty",
+            "courses": [],
+            "reviews": 0,
+            "wCount": 0,
+            "lCount": 0,
+            "wPct": 0,
+        })
+    return build_profile_og_svg(prof)
+
+
+@app.route("/api/og/default.svg")
+def default_og_image():
+    """Generic OG image for the site."""
+    return build_profile_og_svg({
+        "name": "VITC Faculty Review",
+        "dept": "Faculty Reviews",
+        "courses": [],
+        "reviews": 0,
+        "wCount": 0,
+        "lCount": 0,
+        "wPct": 0,
+    })
 
 
 @app.route("/api/profs/<prof_id>/review", methods=["POST"])

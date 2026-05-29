@@ -536,6 +536,39 @@ body, .page, .prof-list { max-width: 100%; }
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.profile-name-row .profile-name { margin-bottom: 0; }
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 0.5px solid var(--border2);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+}
+.share-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--border3);
+  background: var(--surface2);
+}
+.share-btn:active { transform: translateY(0); }
+.share-btn-icon { font-size: 12px; line-height: 1; }
+.share-btn-label { line-height: 1; }
 .profile-dept-tag {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -1556,6 +1589,16 @@ body, .page, .prof-list { max-width: 100%; }
     gap: 24px;
   }
   .req-teacher-form { min-width: 360px; }
+}
+
+@media (max-width: 480px) {
+  .profile-name-row { gap: 8px; }
+  .share-btn {
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .share-btn-label { display: none; }
 }
 
 /* ─── LARGE DESKTOP (1280px+) ───────────────────── */

@@ -149,7 +149,16 @@ const API = {
 
 /* ─── URL HELPERS ────────────────────────────────────────────────────────*/
 function getParam(key) {
-  return new URLSearchParams(window.location.search).get(key);
+  const params = new URLSearchParams(window.location.search);
+  const value = params.get(key);
+  if (value !== null) return value;
+
+  if (key === "id") {
+    const match = window.location.pathname.match(/^\/prof\/([^/]+)\/?$/i);
+    if (match) return decodeURIComponent(match[1]);
+  }
+
+  return null;
 }
 function go(path, params = {}) {
   const qs  = Object.entries(params).map(([k,v]) => `${k}=${encodeURIComponent(v)}`).join("&");

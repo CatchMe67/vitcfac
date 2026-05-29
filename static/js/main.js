@@ -367,7 +367,13 @@ async function initProfile() {
           ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">`
           : p.avatar}</div>
         <div>
-          <div class="profile-name">${p.name}</div>
+          <div class="profile-name-row">
+            <div class="profile-name">${p.name}</div>
+            <button class="share-btn" type="button" onclick='shareProfessor(${JSON.stringify(p.name)}, ${JSON.stringify(p.id)})' aria-label="Share this professor">
+              <span class="share-btn-icon">↗</span>
+              <span class="share-btn-label">Share</span>
+            </button>
+          </div>
           <div class="profile-dept-tag">${p.dept}${p.courses.length ? `, ${p.courses.join(", ")}` : ""}</div>
         </div>
       </div>
@@ -396,6 +402,40 @@ async function initProfile() {
   renderProfileCTA(p, reviewed, "global");
   initBars();
 }
+
+window.shareProfessor = async function(profName, profId) {
+  if (!profId) return;
+
+  const shareUrl = new URL(`/prof/${encodeURIComponent(profId)}`, window.location.origin).toString();
+  const shareText = `${profName} — VITC Faculty Review`;
+
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: shareText,
+        text: `Check out ${profName}'s W/L stats on VITC Faculty Review.`,
+        url: shareUrl
+      });
+      return;
+    }
+
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+      showToast("Link copied to clipboard.");
+      return;
+    }
+
+    throw new Error("Clipboard unavailable");
+  } catch (err) {
+    if (err?.name === "AbortError" || err?.name === "NotAllowedError") return;
+    try {
+      const fallback = `${shareText} ${shareUrl}`;
+      window.prompt("Copy this link", fallback);
+    } catch (_) {
+      showToast("Sharing is unavailable right now.", "error");
+    }
+  }
+};
 
 /* ── Subject toggle pill bar ──────────────────────────────────────────── */
 function renderSubjectToggle(courseStats) {
