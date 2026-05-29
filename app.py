@@ -228,8 +228,9 @@ def get_profs():
                 
         profs.append(prof)
     
-    # Sort by W percentage
-    profs.sort(key=lambda x: (-x["wPct"], x["name"]))
+
+    profs = [p for p in profs if (p.get("reviews") or 0) > 0]
+    profs.sort(key=lambda x: (-(x.get("reviews") or 0), -(x.get("wPct") or 0), x.get("name") or ""))
     return jsonify(profs)
 
 
