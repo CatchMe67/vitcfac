@@ -211,7 +211,7 @@ function renderProfCard(p) {
       <div class="prof-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
       <div class="prof-info">
         <div class="prof-name">${p.name}</div>
-        <div class="prof-meta">${p.dept}${p.courses && p.courses.length > 0 ? ` &middot; ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
+        <div class="prof-meta">${p.dept}${p.courses && p.courses.length > 0 ? `, ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
       </div>
       <div class="prof-right">
         ${vi.hasReviews ? `<span class="w-badge ${vi.cls}">${vi.label}</span>` : `<span class="w-badge" style="border-color: var(--border2); color: var(--muted);">No ratings</span>`}
@@ -246,7 +246,7 @@ function renderHomeMobileProfItem(p, rank) {
         <div class="lb-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
         <div class="lb-info">
           <div class="lb-name">${p.name}</div>
-          <div class="lb-dept">${p.dept}${p.courses && p.courses.length > 0 ? ` &middot; ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
+          <div class="lb-dept">${p.dept}${p.courses && p.courses.length > 0 ? `, ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
         </div>
         <div class="lb-score ${vi.hasReviews ? vi.cls : 'l'}" title="${vi.title}">${vi.hasReviews ? `${vi.dominant.toUpperCase()} ${vi.pct}%` : "—%"}</div>
       </a>`;
@@ -333,7 +333,7 @@ async function initProfile() {
           : p.avatar}</div>
         <div>
           <div class="profile-name">${p.name}</div>
-          <div class="profile-dept-tag">${p.dept}${p.courses.length ? ` &middot; ${p.courses.join(" &middot; ")}` : ""}</div>
+          <div class="profile-dept-tag">${p.dept}${p.courses.length ? `, ${p.courses.join(", ")}` : ""}</div>
         </div>
       </div>
       <!-- Dynamic: W% badge + review count -->
@@ -960,7 +960,7 @@ function renderLeaderboard(sorted, mode, page = 1) {
         <div class="lb-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
         <div class="lb-info">
           <div class="lb-name">${p.name}</div>
-          <div class="lb-dept">${p.dept} &middot; ${p.reviews} reviews</div>
+          <div class="lb-dept">${p.dept}, ${p.reviews} reviews</div>
         </div>
         <div class="lb-score ${vi.hasReviews ? vi.cls : 'l'}" title="${vi.title}">${vi.hasReviews ? `${vi.dominant.toUpperCase()} ${vi.pct}%` : '—%'}</div>
       </a>`;
