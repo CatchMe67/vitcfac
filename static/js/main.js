@@ -863,18 +863,21 @@ async function submitReview() {
   btn.classList.add("loading");
   btn.textContent = "Submitting...";
 
-  let selectedCourse = "";
+  let selectedCourse = ""; // Always default to empty string
   const searchInput = el("course-search");
   if (searchInput) {
     const val = searchInput.value.trim();
     if (window._selectedCourseCode && val.startsWith(window._selectedCourseCode)) {
       selectedCourse = window._selectedCourseCode;
-    } else {
+    } else if (val) {
       // User typed their own custom course directly
       const parts = val.split(" - ");
-      selectedCourse = parts[0].trim();
+      selectedCourse = (parts[0] || "").trim();
     }
+    // If val is empty, selectedCourse stays as ""
   }
+  // Ensure selectedCourse is always a string
+  selectedCourse = String(selectedCourse || "").trim();
 
   try {
     const payload = {

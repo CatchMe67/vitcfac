@@ -58,14 +58,27 @@ function hasReviewed(profId, course = null) {
     const fp = getFingerprint();
     const data = JSON.parse(localStorage.getItem("plore_v") || "{}");
     const entries = data[fp] || [];
+    
+    profId = String(profId).trim();
+    
     // course === null -> check ANY review for this prof (used when caller didn't pass a course)
     if (course === null) {
-      return entries.some(e => e.startsWith(`${profId}::`));
+      const result = entries.some(e => e.startsWith(`${profId}::`));
+      console.log(`[hasReviewed] checking ANY for profId=${profId}, found=${result}, entries=${JSON.stringify(entries)}`);
+      return result;
     }
-    // course === "" (empty string) -> check specifically for empty-course (global) reviews
+    
+    // Normalize course to empty string if null, undefined, or not provided
+    if (course === undefined) course = null; // Already handled above
+    course = String(course || "").trim();
+    
+    // Check specifically for this exact course (empty string = global/no-course reviews)
     const key = `${profId}::${course}`;
-    return entries.includes(key);
-  } catch {
+    const result = entries.includes(key);
+    console.log(`[hasReviewed] checking key="${key}", found=${result}, allEntries=${JSON.stringify(entries)}`);
+    return result;
+  } catch (e) {
+    console.error("hasReviewed error:", e);
     return false;
   }
 }
@@ -75,10 +88,22 @@ function markReviewed(profId, course = "") {
     const fp = getFingerprint();
     const data = JSON.parse(localStorage.getItem("plore_v") || "{}");
     if (!data[fp]) data[fp] = [];
-    const key = course ? `${profId}::${course}` : `${profId}::`;
-    if (!data[fp].includes(key)) data[fp].push(key);
+    
+    profId = String(profId).trim();
+    // Normalize course: empty string, null, or undefined all mean "global" review
+    course = String(course || "").trim();
+    
+    const key = `${profId}::${course}`;
+    if (!data[fp].includes(key)) {
+      data[fp].push(key);
+      console.log(`[markReviewed] stored key="${key}", allEntries=${JSON.stringify(data[fp])}`);
+    } else {
+      console.log(`[markReviewed] key="${key}" already exists`);
+    }
     localStorage.setItem("plore_v", JSON.stringify(data));
-  } catch {}
+  } catch (e) {
+    console.error("markReviewed error:", e);
+  }
 }
 
 const API = {
