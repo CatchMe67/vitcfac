@@ -236,40 +236,40 @@ body {
 
 /* ─── SEARCH ─────────────────────────────────── */
 .promo-banner {
-  margin: 0 var(--page-pad) 12px;
-  padding: 12px 12px 12px 12px;
-  border-radius: 16px;
+  margin: 0 var(--page-pad) 14px;
+  padding: 16px 16px;
+  border-radius: 14px;
   background: transparent;
   color: var(--text);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: flex-start;
   gap: 12px;
-  border: 0.5px solid var(--border2);
-  position: relative;
+  border: 1px solid var(--border3);
+  box-sizing: border-box;
+  width: 100%;
 }
 .promo-banner-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+  display: block;
   min-width: 0;
   width: 100%;
-  line-height: 1.35;
-  font-size: 12px;
+  line-height: 1.25;
+  font-size: 15px;
   color: var(--muted);
-  padding-right: 36px;
+  padding-right: 44px;
 }
 .promo-banner-copy strong {
   color: var(--text);
   font-weight: 700;
   letter-spacing: 0;
   display: block;
+  font-size: 18px;
 }
 .promo-banner-copy span {
   color: var(--muted);
   display: block;
+  font-size: 14px;
 }
 .promo-banner-close {
   position: absolute;
@@ -294,22 +294,22 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 34px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 0.5px solid var(--border3);
-  background: var(--surface2);
+  min-height: 40px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border3);
+  background: rgba(255,255,255,0.02);
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   line-height: 1;
   cursor: pointer;
 }
 .promo-share-btn:hover {
-  background: var(--surface3);
-  border-color: var(--border3);
+  background: rgba(255,255,255,0.04);
+  border-color: var(--border2);
 }
 
 .search-section { padding: 8px var(--page-pad) 0; }
@@ -671,6 +671,46 @@ body.dark .promo-share-btn:hover {
   padding: 3px 8px;
   letter-spacing: 0.03em;
 }
+
+/* Micro-badges for subject codes on prof cards */
+.course-badges { display: inline-flex; gap: 6px; margin-left: 6px; flex-wrap: wrap; }
+.course-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  min-height: 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  border-radius: 8px;
+}
+.course-badge.course-more { cursor: pointer; background: rgba(255,255,255,0.03); border-style: dashed; }
+.subject-modal { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; }
+.subject-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+.subject-modal-panel { position: relative; z-index: 2; background: var(--surface); color: var(--text); padding: 18px; border-radius: 12px; width: min(90%, 420px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); border: 1px solid var(--border3); }
+.subject-modal-header { font-weight:700; margin-bottom:10px; }
+.subject-modal-body { max-height: 60vh; overflow:auto; display:flex; flex-direction:column; gap:6px; }
+.subject-list-item { padding:6px 8px; background: rgba(255,255,255,0.02); border-radius:6px; font-family:var(--font-mono); font-size:13px; }
+.subject-modal-close { margin-top:12px; padding:8px 12px; background:transparent; border-radius:8px; border:1px solid var(--border2); cursor:pointer; }
+
+/* High-contrast boxy primary Share button on profile */
+.share-btn {
+  border-radius: 6px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  color: #000000;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transform-origin: center;
+}
+.share-btn:hover { transform: scale(1.04); box-shadow: 0 14px 40px rgba(0,0,0,0.28); }
+.share-btn:active { transform: scale(0.99); }
+
+/* Make sure the button looks good on light theme */
+:root[data-theme="light"] .share-btn { box-shadow: 0 6px 18px rgba(16,24,40,0.06); }
 
 /* Footer preview + highlighted contact CTA */
 .page.hide-content > *:not(.footer) { visibility: hidden; }

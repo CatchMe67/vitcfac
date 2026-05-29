@@ -291,7 +291,7 @@ function renderProfCard(p) {
       <div class="prof-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
       <div class="prof-info">
         <div class="prof-name">${p.name}</div>
-        <div class="prof-meta">${p.dept}${p.courses && p.courses.length > 0 ? `, ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
+        <div class="prof-meta">${p.dept}${p.courses && p.courses.length > 0 ? renderCourseBadges(p.courses) : ""}</div>
       </div>
       <div class="prof-right">
         ${vi.hasReviews ? `<span class="w-badge ${vi.cls}">${vi.label}</span>` : `<span class="w-badge" style="border-color: var(--border2); color: var(--muted);">No ratings</span>`}
@@ -299,6 +299,42 @@ function renderProfCard(p) {
         <span class="prof-count">${p.reviews} ratings</span>
       </div>
     </a>`;
+}
+
+function renderCourseBadges(courses) {
+  if (!courses || courses.length === 0) return "";
+  const show = courses.slice(0,2);
+  const more = Math.max(0, courses.length - show.length);
+  const encoded = encodeURIComponent(courses.join("|"));
+  let out = "<span class=\"course-badges\">";
+  show.forEach(c => { out += `<span class=\"course-badge\">${c}</span>`; });
+  if (more > 0) {
+    out += `<button class=\"course-badge course-more\" type=\"button\" onclick=\"showAllSubjects('${encoded}')\">+${more} more</button>`;
+  }
+  out += "</span>";
+  return out;
+}
+
+window.showAllSubjects = function(encoded) {
+  try {
+    const raw = decodeURIComponent(encoded || "");
+    const list = raw ? raw.split("|") : [];
+    const content = list.length ? list.map(c => `<div class=\"subject-list-item\">${c}</div>`).join("") : "No subjects";
+    // create modal
+    const existing = document.getElementById("subject-modal");
+    if (existing) existing.remove();
+    const modal = document.createElement("div");
+    modal.id = "subject-modal";
+    modal.className = "subject-modal";
+    modal.innerHTML = `
+      <div class=\"subject-modal-backdrop\" onclick=\"document.getElementById('subject-modal')?.remove()\"></div>
+      <div class=\"subject-modal-panel\">
+        <div class=\"subject-modal-header\">All subjects</div>
+        <div class=\"subject-modal-body\">${content}</div>
+        <button class=\"subject-modal-close\" onclick=\"document.getElementById('subject-modal')?.remove()\">Close</button>
+      </div>`;
+    document.body.appendChild(modal);
+  } catch (e) { alert((decodeURIComponent(encoded||"")).replace(/\|/g, ', ')); }
 }
 
 function verdictInfo(p) {
