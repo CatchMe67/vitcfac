@@ -1,25 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
 
-/* 
-  If you have Ginto font files (woff2/woff) and want to load them locally,
-  place them in /static/fonts/ and uncomment the @font-face rules below:
-
-  @font-face {
-    font-family: 'Ginto';
-    src: url('../fonts/Ginto-Regular.woff2') format('woff2'),
-         url('../fonts/Ginto-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Ginto';
-    src: url('../fonts/Ginto-Bold.woff2') format('woff2'),
-         url('../fonts/Ginto-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-  }
-*/
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -468,6 +448,7 @@ body, .page, .prof-list { max-width: 100%; }
   gap: 16px;
   margin-bottom: 20px;
 }
+.profile-top > div { min-width: 0; }
 .profile-avatar {
   width: 58px;
   height: 58px;
@@ -491,6 +472,9 @@ body, .page, .prof-list { max-width: 100%; }
   line-height: 1.1;
   color: var(--text);
   margin-bottom: 5px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .profile-dept-tag {
   font-family: var(--font-mono);
@@ -499,6 +483,19 @@ body, .page, .prof-list { max-width: 100%; }
   letter-spacing: 0.05em;
   margin-bottom: 8px;
 }
+
+.subject-toggle-bar .subject-tabs-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+}
+.subject-toggle-bar .subject-tabs-scroll::-webkit-scrollbar { height: 6px; }
+.subject-toggle-bar .subject-tabs-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 6px; }
+.subject-tab { flex: 0 0 auto; white-space: nowrap; }
+.subject-tab .stab-count { margin-left: 6px; }
+
 .course-tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .course-tag {
   font-family: var(--font-mono);
