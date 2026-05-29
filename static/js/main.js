@@ -147,18 +147,50 @@ function renderPromoBanner() {
   slot.style.display = "block";
   slot.innerHTML = `
     <div class="promo-banner" role="region" aria-label="Promotional banner">
-      <div class="promo-banner-icon" aria-hidden="true">💀</div>
-      <div class="promo-banner-copy">
-        <strong>Don't let your friends get cooked this sem.</strong>
-        <span>Drop the link in your class groups.</span>
-      </div>
       <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner()">
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
           <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
+      <div class="promo-banner-copy">
+        <strong>Don't let your friends get cooked this sem. 💀💀</strong>
+        <span>Drop the link in your class groups.</span>
+      </div>
+      <button class="promo-share-btn" type="button" onclick="shareHomepage()" aria-label="Share VITC Faculty Review">
+        Share
+      </button>
     </div>`;
 }
+
+window.shareHomepage = async function() {
+  const title = "VITC Faculty Review";
+  const text = "Check out the W/L stats for profs before FFCS slot allocation.";
+  const url = "https://vitcfac.vercel.app/";
+
+  try {
+    if (navigator.share) {
+      await navigator.share({ title, text, url });
+      return;
+    }
+
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(url);
+      showToast("Link copied to clipboard.");
+      return;
+    }
+
+    const fallback = window.prompt("Copy this link", url);
+    if (fallback !== null) showToast("Copy the link to share.", "error");
+  } catch (err) {
+    if (err?.name === "AbortError" || err?.name === "NotAllowedError") return;
+    try {
+      await navigator.clipboard?.writeText?.(url);
+      showToast("Link copied to clipboard.");
+    } catch (_) {
+      showToast("Sharing is unavailable right now.", "error");
+    }
+  }
+};
 
 window.dismissPromoBanner = function() {
   try {
