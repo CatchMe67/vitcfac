@@ -895,7 +895,14 @@ function renderLeaderboard(sorted, mode, page = 1) {
   _leaderboardPage = page;
   const list = el("lb-list");
   const pagEl = el("pagination-slot");
-  const display = mode === "l" ? [...sorted].reverse() : sorted.slice();
+  // Keep server order but filter to the selected mode (W or L)
+  const all = sorted.slice();
+  const display = all.filter(p => {
+    const vi = verdictInfo(p);
+    // Only include profs with reviews in leaderboard tabs
+    if (!vi.hasReviews) return false;
+    return mode === "l" ? vi.dominant === 'l' : vi.dominant === 'w';
+  });
 
   if (display.length === 0) {
     list.innerHTML = errorBlock("No data yet.");
