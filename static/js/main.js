@@ -177,8 +177,7 @@ window.changeHomePage = function(page) {
 };
 
 function renderProfCard(p) {
-  const isW = p.wPct >= 60;
-  const hasReviews = p.reviews > 0;
+  const vi = verdictInfo(p);
   return `
     <a class="prof-card" href="profile.html?id=${p.id}">
       <div class="prof-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
@@ -187,27 +186,42 @@ function renderProfCard(p) {
         <div class="prof-meta">${p.dept}${p.courses && p.courses.length > 0 ? ` &middot; ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
       </div>
       <div class="prof-right">
-        ${hasReviews ? `<span class="w-badge ${isW ? "w" : "l"}">${isW ? "W Prof" : "L Prof"}</span>` : `<span class="w-badge" style="border-color: var(--border2); color: var(--muted);">No ratings</span>`}
-        <span class="prof-pct" title="Percent of positive (W) ratings">${hasReviews ? `W ${p.wPct}%` : "—%"}</span>
+        ${vi.hasReviews ? `<span class="w-badge ${vi.cls}">${vi.label}</span>` : `<span class="w-badge" style="border-color: var(--border2); color: var(--muted);">No ratings</span>`}
+        <span class="prof-pct" title="${vi.title}">${vi.hasReviews ? `${vi.dominant.toUpperCase()} ${vi.pct}%` : "—%"}</span>
         <span class="prof-count">${p.reviews} ratings</span>
       </div>
     </a>`;
 }
 
+function verdictInfo(p) {
+  const reviews = p.reviews || 0;
+  // Prefer explicit counts from API if available
+  let wCount = (typeof p.wCount === 'number') ? p.wCount : Math.round(((p.wPct || 0) / 100) * reviews);
+  let lCount = (typeof p.lCount === 'number') ? p.lCount : Math.max(0, reviews - wCount);
+  if (reviews === 0) return { hasReviews: false, dominant: 'w', pct: 0, label: '', cls: '', title: '' };
+  const dominant = (wCount >= lCount) ? 'w' : 'l';
+  const pct = Math.round(((dominant === 'w' ? wCount : lCount) / reviews) * 100);
+  const cls = dominant === 'w' ? 'w' : 'l';
+  const label = dominant === 'w' ? 'W Prof' : 'L Prof';
+  const title = dominant === 'w' ? 'Percent of positive (W) ratings' : 'Percent of negative (L) ratings';
+  return { hasReviews: true, dominant, pct, label, cls, title };
+}
+
 function renderHomeMobileProfItem(p, rank) {
   const isW = p.wPct >= 60;
   const hasReviews = p.reviews > 0;
-  const rankCls = rank === 1 ? "gold" : rank === 2 ? "silver" : rank === 3 ? "bronze" : "other";
-  return `
-    <a class="lb-item" href="profile.html?id=${p.id}">
-      <div class="lb-rank ${rankCls}">#${rank}</div>
-      <div class="lb-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
-      <div class="lb-info">
-        <div class="lb-name">${p.name}</div>
-        <div class="lb-dept">${p.dept}${p.courses && p.courses.length > 0 ? ` &middot; ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
-      </div>
-      <div class="lb-score ${hasReviews ? (isW ? "w" : "l") : "l"}" title="Percent of positive (W) ratings">${hasReviews ? `W ${p.wPct}%` : "—%"}</div>
-    </a>`;
+    const vi = verdictInfo(p);
+    const rankCls = rank === 1 ? "gold" : rank === 2 ? "silver" : rank === 3 ? "bronze" : "other";
+    return `
+      <a class="lb-item" href="profile.html?id=${p.id}">
+        <div class="lb-rank ${rankCls}">#${rank}</div>
+        <div class="lb-avatar">${p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='${p.avatar}'">` : p.avatar}</div>
+        <div class="lb-info">
+          <div class="lb-name">${p.name}</div>
+          <div class="lb-dept">${p.dept}${p.courses && p.courses.length > 0 ? ` &middot; ${p.courses.slice(0,2).join(", ")}${p.courses.length > 2 ? "..." : ""}` : ""}</div>
+        </div>
+        <div class="lb-score ${vi.hasReviews ? vi.cls : 'l'}" title="${vi.title}">${vi.hasReviews ? `${vi.dominant.toUpperCase()} ${vi.pct}%` : "—%"}</div>
+      </a>`;
 }
 
 function renderSkeletons(n) {
@@ -896,7 +910,7 @@ function renderLeaderboard(sorted, mode, page = 1) {
   list.innerHTML = paginated.map((p, i) => {
     const globalRank = mode === "l" ? sorted.length - (start + i) : (start + i) + 1;
     const rankCls    = (start + i) === 0 ? "gold" : (start + i) === 1 ? "silver" : (start + i) === 2 ? "bronze" : "other";
-    const isW        = p.wPct >= 60;
+    const vi = verdictInfo(p);
     return `
       <a class="lb-item" href="profile.html?id=${p.id}">
         <div class="lb-rank ${rankCls}">#${globalRank}</div>
@@ -905,7 +919,7 @@ function renderLeaderboard(sorted, mode, page = 1) {
           <div class="lb-name">${p.name}</div>
           <div class="lb-dept">${p.dept} &middot; ${p.reviews} reviews</div>
         </div>
-        <div class="lb-score ${isW ? "w" : "l"}">${p.wPct}%</div>
+        <div class="lb-score ${vi.hasReviews ? vi.cls : 'l'}" title="${vi.title}">${vi.hasReviews ? `${vi.dominant.toUpperCase()} ${vi.pct}%` : '—%'}</div>
       </a>`;
   }).join("");
 
