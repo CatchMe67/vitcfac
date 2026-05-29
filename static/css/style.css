@@ -537,27 +537,15 @@ body, .page, .prof-list { max-width: 100%; }
   background: var(--surface2); 
   border: 0.5px solid var(--border2); 
 }
-.footer-contact-btn {
-  background: var(--text);
-  color: var(--bg);
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 11px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  white-space: nowrap;
+/* Contact link styling - same as footer-link but with amber color */
+.footer-contact-link {
+  color: #F59E0B; /* amber to differentiate */
 }
-.footer-contact-btn:hover {
-  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+.footer-contact-link:hover {
+  color: #FFCB6B; /* lighter amber on hover */
+  background: var(--surface2);
+  border: 0.5px solid var(--border2);
 }
-@keyframes footerPulse {
-  0% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
-  50% { transform: scale(1.02); box-shadow: 0 8px 18px rgba(0,0,0,0.22); }
-  100% { transform: scale(1); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
-}
-.footer-contact-btn.pulse { animation: footerPulse 1.6s ease-in-out infinite; }
-.footer-contact-btn.pulse-once { animation: footerPulse 0.9s ease-in-out 2; }
 
 @media (min-width: 480px) {
   .footer {
@@ -569,7 +557,6 @@ body, .page, .prof-list { max-width: 100%; }
   .footer-left { flex: 0 1 auto; }
   .footer-text { font-size: 13px; }
   .footer-link { font-size: 12px; padding: 6px 12px; }
-  .footer-contact-btn { font-size: 12px; padding: 7px 16px; }
 }
 
 
