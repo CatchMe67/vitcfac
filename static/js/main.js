@@ -99,6 +99,7 @@ function initIndex() {
   if (ns) ns.innerHTML = NAV_HTML("index");
   const lbBanner = el("lb-banner");
   if (lbBanner) lbBanner.style.display = "none";
+  renderPromoBanner();
   loadProfList(1);
 
   el("search").addEventListener("input", debounce(() => loadProfList(1), 200));
@@ -122,6 +123,40 @@ function initIndex() {
     mobileQuery.addListener(syncHomeListMode);
   }
 }
+
+function renderPromoBanner() {
+  const slot = el("promo-banner-slot");
+  if (!slot) return;
+
+  const key = "promo_banner_hidden_v1";
+  const hidden = localStorage.getItem(key) === "1";
+  if (hidden) {
+    slot.innerHTML = "";
+    slot.style.display = "none";
+    return;
+  }
+
+  slot.style.display = "block";
+  slot.innerHTML = `
+    <div class="promo-banner" role="region" aria-label="Promotional banner">
+      <div class="promo-banner-text">
+        <strong>Don’t let your friends get cooked this sem 💀</strong>
+        <span>Drop the link in your class groups so we can get more stats.</span>
+      </div>
+      <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner()">✖</button>
+    </div>`;
+}
+
+window.dismissPromoBanner = function() {
+  try {
+    localStorage.setItem("promo_banner_hidden_v1", "1");
+  } catch (e) {}
+  const slot = el("promo-banner-slot");
+  if (slot) {
+    slot.innerHTML = "";
+    slot.style.display = "none";
+  }
+};
 
 function renderLbBanner() {
   return `

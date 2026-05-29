@@ -235,6 +235,56 @@ body {
 .rankings-btn-new:hover { opacity: 0.8; }
 
 /* ─── SEARCH ─────────────────────────────────── */
+.promo-banner {
+  margin: 0 var(--page-pad) 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1E293B 0%, #312E81 100%);
+  color: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+}
+.promo-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.promo-banner-text strong {
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.promo-banner-text span {
+  font-size: 12px;
+  color: rgba(248,250,252,0.82);
+  line-height: 1.35;
+}
+.promo-banner-close {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.promo-banner-close:hover {
+  background: rgba(255,255,255,0.22);
+  transform: scale(1.04);
+}
+.promo-banner-close:active {
+  transform: scale(0.98);
+}
+
 .search-section { padding: 8px var(--page-pad) 0; }
 .search-wrap { position: relative; margin-bottom: 14px; }
 .search-input {
@@ -388,6 +438,16 @@ body, .page, .prof-list { max-width: 100%; }
   .page { padding: 0 var(--page-pad); max-width: var(--max-w); }
   .nav { padding: 0 var(--page-pad); }
   .prof-card { padding: 15px var(--page-pad); }
+}
+
+@media (max-width: 767.98px) {
+  .promo-banner {
+    margin: 0 var(--page-pad) 10px;
+    padding: 11px 12px;
+    align-items: flex-start;
+  }
+  .promo-banner-text strong { font-size: 12px; }
+  .promo-banner-text span { font-size: 11px; }
 }
 
 .prof-info { flex: 1; min-width: 0; }
