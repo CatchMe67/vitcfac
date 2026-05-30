@@ -764,11 +764,14 @@ def update_faculty_stats(faculty_id):
             else:
                 red_chips.append(chip)
                 
-    top_green = [k for k, v in Counter(green_chips).most_common(3)]
-    top_red = [k for k, v in Counter(red_chips).most_common(3)]
+    green_counts = Counter(green_chips)
+    red_counts = Counter(red_chips)
     
     # Extract top unique courses taught, sorted by frequency
     unique_courses = [k for k, v in Counter(courses).most_common(5)]
+
+    def _counter_to_objects(counter_obj):
+        return [{"text": text, "count": count} for text, count in counter_obj.most_common()]
     
     stats = {
         "faculty_id": faculty_id,
@@ -781,8 +784,8 @@ def update_faculty_stats(faculty_id):
         "avg_assign": round(avg_assign, 2),
         "avg_vibe": round(avg_vibe, 2),
         "top_lore": {
-            "green": [{"text": k, "count": v} for k, v in Counter(green_chips).most_common(3)],
-            "red": [{"text": k, "count": v} for k, v in Counter(red_chips).most_common(3)],
+            "green": _counter_to_objects(green_counts),
+            "red": _counter_to_objects(red_counts),
             "courses": unique_courses
         }
     }
