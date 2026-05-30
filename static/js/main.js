@@ -135,48 +135,50 @@ function initIndex() {
 function renderPromoBanner() {
   const slot = el("promo-banner-slot");
   if (!slot) return;
-  // Track visits and shown counts to resurface banner intelligently
+  // Track visits and dismissal states to resurface banner intelligently
   const visitKey = 'promo_visit_count_v1';
-  const shownKey = 'promo_banner_shown_v1';
-  const dismissedKey = 'promo_banner_dismissed_at_v1';
+  const firstDismissedKey = 'promo_banner_first_dismissed_at_v1';
+  const secondDismissedKey = 'promo_banner_second_hidden_forever_v1';
   let visits = 0;
   try { visits = parseInt(localStorage.getItem(visitKey) || '0', 10) || 0; visits += 1; localStorage.setItem(visitKey, String(visits)); } catch (e) { /* ignore */ }
 
-  let shownCount = 0;
-  try { shownCount = parseInt(localStorage.getItem(shownKey) || '0', 10) || 0; } catch (e) { shownCount = 0; }
-  let dismissedAt = 0;
-  try { dismissedAt = parseInt(localStorage.getItem(dismissedKey) || '0', 10) || 0; } catch (e) { dismissedAt = 0; }
+  let firstDismissedAt = 0;
+  try { firstDismissedAt = parseInt(localStorage.getItem(firstDismissedKey) || '0', 10) || 0; } catch (e) { firstDismissedAt = 0; }
+  let secondHiddenForever = false;
+  try { secondHiddenForever = localStorage.getItem(secondDismissedKey) === '1'; } catch (e) { secondHiddenForever = false; }
 
   const now = Date.now();
   const sixHours = 6 * 60 * 60 * 1000;
 
   // Decide whether to show:
-  // - Always show first time (shownCount === 0)
-  // - Otherwise, show if we've hit 3+ visits OR it's been 6+ hours since dismissal
-  let shouldShow = false;
-  if (shownCount === 0) shouldShow = true;
-  else if (visits >= 3) shouldShow = true;
-  else if (dismissedAt && (now - dismissedAt) >= sixHours) shouldShow = true;
+  // - First banner on visits 1-2 unless dismissed
+  // - Second banner only on visit 3+ OR after 6 hours from first dismissal
+  // - If the second banner was dismissed, never show any promo again
+  let variant = "";
+  if (!secondHiddenForever) {
+    const secondEligible = visits >= 3 || (firstDismissedAt && (now - firstDismissedAt) >= sixHours);
+    if (secondEligible) {
+      variant = "second";
+    } else if (!firstDismissedAt) {
+      variant = "first";
+    }
+  }
 
-  if (!shouldShow) {
+  if (!variant) {
     slot.innerHTML = "";
     slot.style.display = "none";
     return;
   }
 
-  // Prepare copy: show alternate copy on the second time the banner appears
-  const isSecond = shownCount >= 1;
-  const titleText = isSecond ? "Did you save from getting cooked 💀 If not then you still have chance 🙏🙏" : "Don't let your friends get cooked this sem. 💀💀";
+  const isSecond = variant === "second";
+  const titleText = isSecond ? "Did you save them from getting cooked 💀 If not then you still have chance 🙏🙏" : "Don't let your friends get cooked this sem. 💀💀";
   const subtitle = "Drop the link in your class groups.";
-
-  // Mark shown
-  try { localStorage.setItem(shownKey, String(shownCount + 1)); } catch (e) {}
 
   slot.style.display = "block";
   const titleHtml = titleText.replace(/\n/g, '<br>');
   slot.innerHTML = `
     <div class="promo-banner" role="region" aria-label="Promotional banner">
-      <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner()">
+      <button class="promo-banner-close" type="button" aria-label="Dismiss banner" onclick="dismissPromoBanner('${variant}')">
         <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
           <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
@@ -221,10 +223,13 @@ window.shareHomepage = async function() {
   }
 };
 
-window.dismissPromoBanner = function() {
+window.dismissPromoBanner = function(variant = "first") {
   try {
-    // Record dismissal timestamp so we can resurface later per rules
-    localStorage.setItem('promo_banner_dismissed_at_v1', String(Date.now()));
+    if (variant === "second") {
+      localStorage.setItem('promo_banner_second_hidden_forever_v1', '1');
+    } else {
+      localStorage.setItem('promo_banner_first_dismissed_at_v1', String(Date.now()));
+    }
   } catch (e) {}
   const slot = el("promo-banner-slot");
   if (slot) {
