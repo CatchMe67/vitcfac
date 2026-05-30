@@ -687,16 +687,36 @@ function renderProfileDynamic(code, p, courseStats) {
   // ── Lore drops ────────────────────────────────────────────────────────
   const loreEl = el("profile-lore");
   if (loreEl) {
-    const hasLore = lore && (lore.green.length || lore.red.length);
+    const hasLore = lore && ((lore.green && lore.green.length) || (lore.red && lore.red.length));
     loreEl.innerHTML = hasLore ? `
       <div class="lore-section page-fade">
         <div class="section-label" style="margin-bottom:12px">Lore Drops${code !== "global" ? ` · ${code}` : ""}</div>
         <div class="lore-grid">
-          ${lore.green.map(t => `<span class="lore-chip">${t}</span>`).join("")}
-          ${lore.red.map(t   => `<span class="lore-chip">${t}</span>`).join("")}
+          ${renderLoreChips(lore.green || [], "green")}
+          ${renderLoreChips(lore.red || [], "red")}
         </div>
       </div>` : "";
   }
+}
+
+function renderLoreChips(items, type) {
+  if (!Array.isArray(items) || items.length === 0) return "";
+  return items.map(item => {
+    const text = typeof item === "string" ? item : (item?.text || "");
+    const count = typeof item === "object" && item !== null && Number.isFinite(Number(item.count))
+      ? Math.max(1, Number(item.count))
+      : 1;
+    return `<span class="lore-chip ${type}">${escapeHtml(text)}${count > 1 ? ` <strong>x${count}</strong>` : ""}</span>`;
+  }).join("");
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 /* ── Review CTA (updates href when active course changes) ─────────────── */

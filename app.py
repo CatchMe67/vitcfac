@@ -147,9 +147,33 @@ def format_prof(row):
     if not isinstance(lore_data, dict):
         lore_data = {"green": [], "red": []}
         
+    def _normalize_counter_map(value):
+        if isinstance(value, dict):
+            items = value.items()
+        elif isinstance(value, list):
+            items = value
+        else:
+            items = []
+
+        out = []
+        for item in items:
+            if isinstance(item, tuple) and len(item) == 2:
+                text, count = item
+            elif isinstance(item, list) and len(item) == 2:
+                text, count = item[0], item[1]
+            else:
+                text, count = item, 1
+            try:
+                count = int(count)
+            except Exception:
+                count = 1
+            if text:
+                out.append({"text": str(text), "count": max(count, 1)})
+        return out
+
     clean_lore = {
-        "green": lore_data.get("green") or [],
-        "red": lore_data.get("red") or []
+        "green": _normalize_counter_map(lore_data.get("green") or []),
+        "red": _normalize_counter_map(lore_data.get("red") or [])
     }
     courses_list = lore_data.get("courses") or []
 
@@ -757,8 +781,8 @@ def update_faculty_stats(faculty_id):
         "avg_assign": round(avg_assign, 2),
         "avg_vibe": round(avg_vibe, 2),
         "top_lore": {
-            "green": top_green,
-            "red": top_red,
+            "green": [{"text": k, "count": v} for k, v in Counter(green_chips).most_common(3)],
+            "red": [{"text": k, "count": v} for k, v in Counter(red_chips).most_common(3)],
             "courses": unique_courses
         }
     }
