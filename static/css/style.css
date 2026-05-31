@@ -547,6 +547,7 @@ body.dark .promo-share-btn:hover {
   gap: 4px;
   flex-shrink: 0;
 }
+.prof-right .w-badge { display: none !important; }
 .w-badge {
   font-family: var(--font-mono);
   font-size: 10px;

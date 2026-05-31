@@ -48,7 +48,7 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 )
 DEFAULT_BUCKET = "VITC fac images"
-DEFAULT_SEARCH_SUFFIX = "VIT Chennai"
+DEFAULT_SEARCH_SUFFIX = "chennai"
 DEFAULT_OUT_CSV = "missing_faculty_image_unresolved.csv"
 DEFAULT_UPLOAD_PREFIX = "faculty-images"
 
