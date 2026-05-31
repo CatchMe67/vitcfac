@@ -90,6 +90,28 @@ def track_traffic():
 def err(msg, code=400):
     return jsonify({"error": msg}), code
 
+
+def fetch_all_rows(table_name, select_clause="*"):
+    """Fetch every row from a Supabase table, working around the 1000-row default limit."""
+    rows = []
+    batch_size = 1000
+    offset = 0
+
+    while True:
+        res = (
+            supabase.table(table_name)
+            .select(select_clause)
+            .range(offset, offset + batch_size - 1)
+            .execute()
+        )
+        batch = res.data or []
+        rows.extend(batch)
+        if len(batch) < batch_size:
+            break
+        offset += batch_size
+
+    return rows
+
 @app.route("/api/ping")
 def ping():
     return jsonify({"status": "ok", "ts": datetime.utcnow().isoformat()})
@@ -388,11 +410,12 @@ def get_profs():
             for c in _cached_courses:
                 course_map[c["id"].lower()] = c["name"].lower()
                 
-    # Fetch all with stats
-    res = supabase.table("faculty").select("*, faculty_stats(*)").execute()
+    # Fetch all with stats, paging through the full table so results beyond
+    # Supabase's default 1000-row window are still searchable.
+    res_data = fetch_all_rows("faculty", "*, faculty_stats(*)")
     profs = []
     
-    for row in res.data:
+    for row in res_data:
         prof = format_prof(row)
         
         # Filter by department
